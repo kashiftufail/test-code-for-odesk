@@ -1,0 +1,122 @@
+Searching 629 files for "home-evaluation.html"
+
+/Users/hammads/Dropbox/Projects/Arif/projects/desjardinsrealty/app/views/home/about-me.html.haml:
+   42          %ul.widget-listings
+   43            %li
+   44:             %a{href: "home-evaluation.html"}
+   45                .property-thumbnail
+   46                  %img{alt: "", src: "images/home-evaluation.png"}/
+
+/Users/hammads/Dropbox/Projects/Arif/projects/desjardinsrealty/app/views/home/blog.html.haml:
+  179          %ul.widget-listings
+  180            %li
+  181:             %a{href: "home-evaluation.html"}
+  182                .property-thumbnail
+  183                  %img{alt: "", src: "images/home-evaluation.png"}/
+
+/Users/hammads/Dropbox/Projects/Arif/projects/desjardinsrealty/app/views/home/buy.html.haml:
+   35          %ul.widget-listings
+   36            %li
+   37:             %a{href: "home-evaluation.html"}
+   38                .property-thumbnail
+   39                  %img{alt: "", src: "images/home-evaluation.png"}/
+
+/Users/hammads/Dropbox/Projects/Arif/projects/desjardinsrealty/app/views/home/buying-process.html.haml:
+   53          %ul.widget-listings
+   54            %li
+   55:             %a{href: "home-evaluation.html"}
+   56                .property-thumbnail
+   57                  %img{alt: "", src: "images/home-evaluation.png"}/
+
+/Users/hammads/Dropbox/Projects/Arif/projects/desjardinsrealty/app/views/home/closing-costs.html.haml:
+   26          %ul.widget-listings
+   27            %li
+   28:             %a{href: "home-evaluation.html"}
+   29                .property-thumbnail
+   30                  %img{alt: "", src: "images/home-evaluation.png"}/
+
+/Users/hammads/Dropbox/Projects/Arif/projects/desjardinsrealty/app/views/home/contact.html.haml:
+   43          %ul.widget-listings
+   44            %li
+   45:             %a{href: "home-evaluation.html"}
+   46                .property-thumbnail
+   47                  %img{alt: "", src: "images/home-evaluation.png"}/
+
+/Users/hammads/Dropbox/Projects/Arif/projects/desjardinsrealty/app/views/home/foreclosures.html.haml:
+   24          %ul.widget-listings
+   25            %li
+   26:             %a{href: "home-evaluation.html"}
+   27                .property-thumbnail
+   28                  %img{alt: "", src: "images/home-evaluation.png"}/
+
+/Users/hammads/Dropbox/Projects/Arif/projects/desjardinsrealty/app/views/home/index.html.haml:
+  261          %ul.widget-listings
+  262            %li
+  263:             %a{href: "home-evaluation.html"}
+  264                .property-thumbnail
+  265                  %img{alt: "", src: "images/home-evaluation.png"}/
+
+/Users/hammads/Dropbox/Projects/Arif/projects/desjardinsrealty/app/views/home/investing.html.haml:
+   23          %ul.widget-listings
+   24            %li
+   25:             %a{href: "home-evaluation.html"}
+   26                .property-thumbnail
+   27                  %img{alt: "", src: "images/home-evaluation.png"}/
+
+/Users/hammads/Dropbox/Projects/Arif/projects/desjardinsrealty/app/views/home/just-listed.html.haml:
+   45          %ul.widget-listings
+   46            %li
+   47:             %a{href: "home-evaluation.html"}
+   48                .property-thumbnail
+   49                  %img{alt: "", src: "images/home-evaluation.png"}/
+
+/Users/hammads/Dropbox/Projects/Arif/projects/desjardinsrealty/app/views/home/listings-for-rent.html.haml:
+  341          %ul.widget-listings
+  342            %li
+  343:             %a{href: "home-evaluation.html"}
+  344                .property-thumbnail
+  345                  %img{alt: "", src: "images/home-evaluation.png"}/
+
+/Users/hammads/Dropbox/Projects/Arif/projects/desjardinsrealty/app/views/home/listings-for-sale.html.haml:
+  341          %ul.widget-listings
+  342            %li
+  343:             %a{href: "home-evaluation.html"}
+  344                .property-thumbnail
+  345                  %img{alt: "", src: "images/home-evaluation.png"}/
+
+/Users/hammads/Dropbox/Projects/Arif/projects/desjardinsrealty/app/views/home/mortgage-calculator.html.haml:
+   27          %ul.widget-listings
+   28            %li
+   29:             %a{href: "home-evaluation.html"}
+   30                .property-thumbnail
+   31                  %img{alt: "", src: "images/home-evaluation.png"}/
+
+/Users/hammads/Dropbox/Projects/Arif/projects/desjardinsrealty/app/views/home/property-listings.html.haml:
+  341          %ul.widget-listings
+  342            %li
+  343:             %a{href: "home-evaluation.html"}
+  344                .property-thumbnail
+  345                  %img{alt: "", src: "images/home-evaluation.png"}/
+
+/Users/hammads/Dropbox/Projects/Arif/projects/desjardinsrealty/app/views/home/renovation-loan.html.haml:
+   26          %ul.widget-listings
+   27            %li
+   28:             %a{href: "home-evaluation.html"}
+   29                .property-thumbnail
+   30                  %img{alt: "", src: "images/home-evaluation.png"}/
+
+/Users/hammads/Dropbox/Projects/Arif/projects/desjardinsrealty/app/views/home/sell.html.haml:
+   42          %ul.widget-listings
+   43            %li
+   44:             %a{href: "home-evaluation.html"}
+   45                .property-thumbnail
+   46                  %img{alt: "", src: "images/home-evaluation.png"}/
+
+/Users/hammads/Dropbox/Projects/Arif/projects/desjardinsrealty/app/views/home/selling-tips.html.haml:
+   41          %ul.widget-listings
+   42            %li
+   43:             %a{href: "home-evaluation.html"}
+   44                .property-thumbnail
+   45                  %img{alt: "", src: "images/home-evaluation.png"}/
+
+17 matches across 17 files

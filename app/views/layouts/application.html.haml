@@ -1,0 +1,204 @@
+!!!
+/[if lt IE 7] <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en">
+/[if IE 7] <html class="no-js lt-ie9 lt-ie8" lang="en">
+/[if IE 8] <html class="no-js lt-ie9" lang="en">
+/ [if gt IE 8]><!
+%html.no-js{lang: "en"}
+  / <![endif]
+  %head
+    %meta{charset: "utf-8"}/
+    %meta{content: "IE=edge,chrome=1", "http-equiv" => "X-UA-Compatible"}/
+    %title Welcome to Desjardinsrealty Inc.
+    %meta{content: "", name: "description"}/
+    %meta{content: "width=device-width", name: "viewport"}/
+    %link{href: "/style.css", rel: "stylesheet"}/
+    %link{href: "/css/responsive.css", rel: "stylesheet"}/
+    %link{href: "http://fonts.googleapis.com/css?family=PT+Sans:700|Open+Sans:600", rel: "stylesheet", type: "text/css"}/
+    / Custom Google Fonts
+    %script{src: "/js/libs/modernizr-2.0.6.min.js"}
+    %script{src: "http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"}
+    :javascript
+      window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')
+    %script{src: "/js/plugins.js"}
+    %script{src: "/js/script.js"}
+    = stylesheet_link_tag "application"
+    = javascript_include_tag "application"
+  %body
+    .header-top
+      .width-container
+        .header-top-left
+          %span.phone-header-top (416) 268-1118
+          %a.email-header-top{href: "/mailto:no-reply@progressionstudios.com"} danielle@desjardinsrealty.com
+        / close .header-top-left
+        .social-icons
+          %a.rss{href: "/#", target: "_blank"} r
+          %a.facebook{href: "http://facebook.com", target: "_blank"} F
+          %a.twitter{href: "https://twitter.com/Progression_S", target: "_blank"} t
+          %a.skype{href: "http://skype.com", target: "_blank"} s
+          %a.vimeo{href: "http://vimeo.com", target: "_blank"} v
+          %a.linkedin{href: "http://linkedin.com/", target: "_blank"} l
+          %a.dribbble{href: "http://dribbble.com/", target: "_blank"} d
+          / a class="forrst" href="http://forrst.com/" target="_blank">f</a
+          / a class="flickr" href="http://flickr.com" target="_blank">n</a
+          / a class="google" href="http://google.com" target="_blank">g</a
+          / a class="youtube" href="http://youtube.com" target="_blank">y</a
+        / close .social-icons
+        .clearfix
+      / close .width-container
+    %header
+      .header-border-top
+      .width-container
+        %h1#logo
+          %a{href: "/"}
+            %img{alt: "Freehold Theme", src: "/images/DesjardinsRealty_Logo.png"}/
+        %nav
+          %ul.sf-menu
+            %li.current-menu-item
+              %a{href: "/index"} Home
+            %li
+              %a{href: "/about-me"} About Me
+            %li
+              %a{href: "/property-listings"} Properties
+
+              %ul
+                %li
+                  %a{href: "/listings-for-rent"} For Rent
+                %li
+                  %a{href: "/listings-for-sale"} For Sale
+                %li
+                  %a{href: "/foreclosures"} Forclosures
+                %li
+                  %a{href: "/renovation-loan"} Renovation Loan
+            %li
+              %a{href: "/buy"} Buy
+              %ul
+                %li
+                  %a{href: "/investing"} Investing
+                %li
+                  %a{href: "/buying-process"} Buying Process
+                %li
+                  %a{href: "/closing-costs"} Closing Costs
+            %li
+              %a{href: "/sell"} Sell
+              %ul
+                %li
+                  %a{href: "/selling-tips"} Selling Tips
+            %li
+              %a{href: "/blog"} Blog
+            %li
+              %a{href: "/contact"} Contact
+        .clearfix
+      / close .width-container
+      .header-border-bottom
+    #search-container
+      .width-container
+        %form.searchform{action: "/search", method: "get"}
+          %label.assistive-text{for: "s"} Search:
+          %input#s.field{name: "keyword", placeholder: "Enter an address, neighborhood, zip or city...", type: "text"}/
+          %input#searchsubmit.submit{name: "submit", type: "submit", value: "Search"}/
+          .clearfix
+          #panel-search
+            .header-advanced-pricing
+              %input#price-min.field{name: "price-min", placeholder: "Min Price", type: "text"}/
+            .price-range to
+            .header-advanced-pricing
+              %input#price-max.field{name: "price-max", placeholder: "Max Price", type: "text"}/
+            .header-advanced-bedbath
+              %select{name: "beds"}
+                %option{selected: "selected", value: ""} Beds
+                %option{value: "1"} 1+ ba
+                %option{value: "2"} 2+ ba
+                %option{value: "3"} 3+ ba
+                %option{value: "4"} 4+ ba
+            .header-advanced-bedbath
+              %select{name: "baths"}
+                %option{selected: "selected", value: ""} Baths
+                %option{value: "1"} 1+ bd
+                %option{value: "2"} 2+ bd
+                %option{value: "3"} 3+ bd
+                %option{value: "4"} 4+ bd
+            .header-prop-typestatus
+              %select{name: "sqft"}
+                %option{selected: "selected", value: ""} Square Feet
+                %option{value: "500"} 500+ sqft
+                %option{value: "1000"} 1000+ sqft
+                %option{value: "1500"} 1500+ sqft
+                %option{value: "2000"} 2000+ sqft
+                %option{value: "2500"} 2500+ sqft
+            .header-prop-typestatus
+              %select{name: "type"}
+                %option{selected: "selected", value: ""} Property Type
+                - PropertyType.all.each do |type|
+                  %option{value: type.name}=type.name
+            .header-prop-typestatus.hidden-value-tablet
+              %select{name: "status"}
+                %option{selected: "selected", value: ""} Property Status
+                - PropertyStatus.all.each do |status|
+                  %option{value: status.name}=status.name
+
+            %a.more-search-options{href: "/#blanksearch"} More search options
+      / close width-container
+      .clearfix
+    / close #search-container
+    .width-container
+      %a.search-drop-down{href: "/#"} Search More
+  %body
+    .flash
+      - [:success, :notice, :error, :alert].each do |level|
+        - unless flash[level].blank?
+          %div{:class => "alert-message #{flash_class(level)}"}
+            = content_tag :p, flash[level]
+    = yield
+  / close #main
+%footer
+  .width-container
+    .grid4column
+      %h4 About Me
+      %p liquam est tortor, sagittis in fringilla in, pellentesque nec erat. Aenean semper, neque non faucibus
+      %p Malesuada, dui felis tempor felis, vel varius ante diam ut mauris. Aliquam nibh tellus, viverra ut tristique sed, interdum sed mauris.
+    .grid4column
+      %h4 Listings
+      %ul
+        %li
+          %a{href: "/listings-for-rent"} For Rent
+        %li
+          %a{href: "/listings-for-sale"} For Sale
+  
+    .grid4column
+      %h4 Danielle
+      %ul
+        %img{src: "/images/agent-danielle.png"}/
+    .grid4column.lastcolumn
+      %h4 Contact Me
+      .location-widget
+        %span> Location
+        \: 156 University Ave
+        %br/
+        Toronto ON, 1A2 3B6, CA
+        %br/
+        = succeed "" do
+          %span Mobile: (416) 268-1118
+        %br/
+        = succeed "" do
+          %span Office (416) 298-8200
+        %br/
+        = succeed "" do
+          %span Fax (416) 298-6602
+        %br/
+        = succeed "" do
+          %span Email
+        %a{href: "/#"} danielle@desjardinsrealty.com
+    .clearfix
+  / close .width-container
+  #copyright
+    .width-container
+      %span.copyright-left
+        \© Desjardins Realty Inc. 2012 All Rights Reserved.
+        %br  
+        Website Designed & Developed by 
+        %a{href: "http://www.1magine.ca", target: "_blank"}
+          %strong 1MAGINE.CA
+      %a#scrollToTop{href: "/#"} Scroll to top
+      .clearfix
+    / close .width-container
+  / close #copyright

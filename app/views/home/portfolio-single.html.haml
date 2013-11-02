@@ -1,0 +1,59 @@
+#main
+  .width-container
+    .content-boxed
+      %h2.title-bg Portfolio Item Title
+      .portfolio-post
+        #portfolio-single-slider
+          #slider.flexslider
+            %ul.slides
+              %li
+                %a{href: "images/demo/portfolio-single.jpg", rel: "prettyPhoto[gallery]"}
+                  %img{alt: "", src: "images/demo/portfolio-single.jpg"}/
+              %li
+                %a{href: "images/demo/portfolio-single.jpg", rel: "prettyPhoto[gallery]"}
+                  %img{alt: "", src: "images/demo/portfolio-single.jpg"}/
+              %li
+                %a{href: "images/demo/portfolio-single.jpg", rel: "prettyPhoto[gallery]"}
+                  %img{alt: "", src: "images/demo/portfolio-single.jpg"}/
+          #carousel.flexslider
+            %ul.slides
+              %li
+                %img{src: "images/demo/portfolio-single-thumb.jpg"}/
+              %li
+                %img{src: "images/demo/portfolio-single-thumb.jpg"}/
+              %li
+                %img{src: "images/demo/portfolio-single-thumb.jpg"}/
+        .clearfix
+        :javascript
+          jQuery(document).ready(function($) {
+              $(window).load(function(){
+                $('#carousel').flexslider({
+                  animation: "slide",
+                  controlNav: false,
+                  animationLoop: false,
+                  slideshow: false,
+                  itemWidth: 145,
+                  itemMargin: 15,
+                  asNavFor: '#slider'
+                });
+
+                $('#slider').flexslider({
+                  animation: "fade",
+                  controlNav: false,
+                  animationLoop: false,
+                  slideshow: false,
+                  sync: "#carousel",
+                  start: function(slider){
+                    $('body').removeClass('loading');
+                  }
+                });
+              });
+          });
+        %br/
+        %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nisl nisi, pellentesque in scelerisque eget, dictum eget libero. Cras ullamcorper, arcu in tincidunt gravida, purus nunc pharetra nisl, id pulvinar nisi libero sed urna. Integer pulvinar semper arcu, vel sagittis turpis malesuada nec. Etiam ac lorem dui, eu aliquet eros. Vivamus rutrum sodales risus, eget luctus erat cursus a. Fusce et nunc id lacus vestibulum consequat. Vestibulum id suscipit arcu.
+        %p Sed tortor ligula, ullamcorper nec ultrices ac, volutpat ut purus. Maecenas ac elit diam, vel tincidunt est. Curabitur consectetur, sem tempor lobortis elementum, metus sapien accumsan tellus, at vulputate tortor enim quis justo. Vivamus vestibulum sodales fringilla. Sed congue, elit et rhoncus fermentum, nisl diam volutpat turpis, sit amet malesuada lacus erat id lectus. Nulla id nibh urna, nec scelerisque lacus. Praesent sed commodo turpis. Maecenas imperdiet viverra tincidunt. Morbi ultricies, justo in auctor sagittis, leo eros ullamcorper lorem, in dapibus augue nisl sit amet leo. Pellentesque id mi diam. Phasellus auctor laoreet scelerisque. Nam nec dolor nisi, sit amet vestibulum est.
+      / close .portfolio-post
+      .clearfix
+    / close .content-boxed
+    .clearfix
+  / close .width-container

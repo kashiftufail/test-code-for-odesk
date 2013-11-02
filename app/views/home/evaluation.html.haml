@@ -1,0 +1,52 @@
+#main
+  .width-container
+    #container-sidebar
+      .content-boxed
+        %br
+        %h1 Free Home Evaluation
+        #contact-form-new
+          = simple_form_for @evaluation do |f|
+            %h5 Your information
+            = f.input :name, placeholder: "Full Name", label: false
+            = f.input :email, placeholder: "Email Address", label: false
+            = f.input :phone, placeholder: "Telephone Number", label: false
+            %h5 Property address
+            = f.input :address, placeholder: "Street Address", label: false
+            = f.input :city, placeholder: "City", label: false, wrapper_html: { class: "city" }
+            = f.input :province, placeholder: "Province", label: false, wrapper_html: { class: "province" }
+            = f.input :postal_code, placeholder: "Postal Code", label: false, wrapper_html: { class: "postal_code" }
+            %h5 Property information
+            = f.input :bedrooms, placeholder: "Bedrooms", label: false
+            = f.input :bathrooms, placeholder: "Bathrooms", label: false
+            = f.input :size, placeholder: "Size (sqft)", label: false
+            = f.input :age, placeholder: "Age (years)", label: false
+            = f.input :features, placeholder: "Features", label: false
+            = f.input :comments, placeholder: "Comments", label: false
+            = f.submit "Send Message"
+
+          .grid2column.lastcolumn
+
+        %br
+        %br
+        %h4 What is your property worth in today's market?
+        %br
+        %p Welcome to my online Home Evaluation system. The answers to your home-selling questions are just a click away! Let me help you find the value of your home. By running a Comparative Market Analysis (CMA), I'll find the value of your property on the current real estate market.
+
+        %br
+        %p Through the Comparative Market Analysis, I can evaluate the prices of properties similar to yours that have recently sold in your area. This analysis will give you a better idea of your property's market value, one of the first - and essential! - steps as you prepare to sell your home. All it takes is a few quick minutes to complete and submit the form below. Then let my system do the work for you! I'll contact you as soon as I have the results.
+
+        %br
+        %p If you are considering selling your property, and would like to know what the maximum value you can get for your property, I will gladly set up a FREE no obligation individualized comparative market analysis of your home, taking into account vital elements such as the location, property size and features, physical condition, extraordinary features and current market conditions.  I will present you with data for comparable sales in your neighbourhood and you will receive all of the information you need to make an informed and calculated decision.
+        %br
+        %br
+        %br
+        %br
+        %br
+        %br
+        %br
+        %br
+        %br
+        %br
+        
+      / close .content-boxed
+    = render "shared/sidebar"

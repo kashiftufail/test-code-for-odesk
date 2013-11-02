@@ -1,0 +1,147 @@
+#main
+  .width-container
+    #container-sidebar
+      .content-boxed
+        %h2.title-bg Our Blog
+        .type-post
+          %h3 Suspendisse adipiscing augue congue magna pulvinar
+          .post-data
+            Posted on
+            %a{href: "#"} Jun 29, 2012
+            by
+            %a{href: "#"} Admin
+            in
+            = succeed "," do
+              %a{href: "#"} Real Estate
+            %a{href: "#"} Blog
+          - if @entry.cover_image.present?
+            .featured-image
+              %a{href: @entry.cover_image.url(:regular), rel: "PrettyPhoto"}
+                %img{alt: "", src: @entry.cover_image.url(:regular)}/
+          %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec mi turpis, egestas nec ultrices a, fermentum sit amet ante. Nulla euismod felis ac eros gravida hendrerit. Nullam lobortis luctus quam non tristique. Praesent scelerisque commodo tellus, eu tempor erat hendrerit vitae. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam erat volutpat. Suspendisse congue dui non felis blandit dignissim.
+          %p Pellentesque vitae felis eu mi suscipit luctus a ullamcorper eros. Quisque lectus enim, hendrerit euismod adipiscing vitae, ultrices at ligula. Pellentesque sit amet lacus sapien, ac convallis odio. Pellentesque mattis, nunc nec varius posuere, tortor quam sodales lectus, a ultricies dui lorem eget justo. Sed id purus nisi. Nulla ligula lacus, volutpat sed consectetur nec, molestie nec magna. Vestibulum porttitor dapibus risus, eget bibendum sem sodales non.
+          %p Aliquam tristique varius lacus, nec pharetra felis dictum sit amet. Phasellus semper eleifend mi in malesuada. Aliquam placerat blandit neque sit amet congue. Etiam sit amet aliquam nisl. Nulla venenatis tempus ligula vel laoreet. Sed vulputate mattis pharetra. In tempus felis id leo fringilla pharetra. Maecenas in felis a sapien laoreet imperdiet. Sed ipsum felis, scelerisque eget gravida lacinia, posuere in est. Quisque ac blandit elit.
+          .clearfix
+        / close .type-post
+        .share-section
+          .tags
+            Tags:
+            = succeed "," do
+              %a{href: "#"} Houses
+            = succeed "," do
+              %a{href: "#"} Real Estate
+            = succeed "," do
+              %a{href: "#"} Family
+            = succeed "," do
+              %a{href: "#"} News
+            %a{href: "#"} Latest
+          .clearfix
+        .clearfix
+      / close .content-boxed
+      %br/
+      .content-boxed
+        %h2.title-bg Comments
+        %ol.commentlist
+          %li#li-comment-9.comment.byuser.comment-author-progressionstudios.bypostauthor.even.thread-even.depth-1
+            %article#comment-9.comment
+              .comment-meta
+                .comment-author.vcard
+                  %img.avatar.avatar-68.photo{alt: "", height: "68", src: "http://1.gravatar.com/avatar/ba52f9c3e9ebf4d37ffe96fc163ceaa4?s=68&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D68&r=G", width: "68"}/
+                  %span.fn Mike
+                  on
+                  %a{href: "#"}
+                    %time{datetime: "2012-07-10T05:07:40+00:00", pubdate: ""} July 10, 2012 at 5:07 am
+                  %span.says said:
+                / .comment-author .vcard
+              .comment-content
+                %p
+                  Hi, this is a comment.
+                  %br/
+                  To delete a comment, just log in and view the post’s comments. There you will have the option to edit or delete them.
+              .reply
+                %a.comment-reply-link{href: "#"}
+                  Reply
+                  %span ↓
+              / .reply
+            / #comment-##
+            %ul.children
+              %li#li-comment-10.comment.byuser.comment-author-progressionstudios.bypostauthor.odd.alt.depth-2
+                %article#comment-10.comment
+                  .comment-meta
+                    .comment-author.vcard
+                      %img.avatar.avatar-39.photo{alt: "", height: "39", src: "http://1.gravatar.com/avatar/ba52f9c3e9ebf4d37ffe96fc163ceaa4?s=39&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D39&r=G", width: "39"}/
+                      %span.fn Mike
+                      on
+                      %a{href: "#"}
+                        %time{datetime: "2012-07-10T05:07:48+00:00", pubdate: ""} July 10, 2012 at 5:07 am
+                      %span.says said:
+                    / .comment-author .vcard
+                  .comment-content
+                    %p Sample reply to a comment…
+                  .reply
+                    %a.comment-reply-link{href: "#"}
+                      Reply
+                      %span ↓
+                  / .reply
+                / #comment-##
+        .clearfix
+        %h2.grey-header-bar Leave a reply
+        #reply
+          %div
+            %input#textname{placeholder: "Name*", size: "22", type: "text"}/
+          %div
+            %input#textemail{placeholder: "Email*", size: "22", type: "text"}/
+          %div
+            %input#textwebsite{placeholder: "Website", size: "22", type: "text"}/
+          %div
+            %textarea#comment{cols: "50", placeholder: "Enter Comment", rows: "10"}
+          %div
+            %input.submit{name: "submit", type: "submit", value: "Post Comment"}/
+        .clearfix
+      / close .content-boxed
+    / close #container-sidebar
+    #sidebar
+      .content-boxed
+        %h2.title-bg Search
+        %form.searchform{action: "", method: "get"}
+          %label.assistive-text{for: "s"} Search:
+          %input#s.field{name: "s", placeholder: "Search our blog...", type: "text"}/
+          %input#searchsubmit.submit{name: "submit", type: "submit", value: "Search"}/
+      / close .content-boxed
+      .content-boxed
+        %h2.title-bg Archives
+        %ul
+          %li
+            %a{href: "#"} June
+          %li
+            %a{href: "#"} May
+          %li
+            %a{href: "#"} May
+          %li
+            %a{href: "#"} March
+          %li
+            %a{href: "#"} February
+          %li
+            %a{href: "#"} January
+      / close .content-boxed
+      .content-boxed
+        %h2.title-bg Social Networks
+        .social-icons-widget
+          %a.social-rss{href: "#", target: "_blank"} RSS
+          %a.social-facebook{href: "http://facebook.com", target: "_blank"} Facebook
+          %a.social-twitter{href: "http://twitter.com", target: "_blank"} Twitter
+          %a.social-skype{href: "http://skype.com", target: "_blank"} skype
+          %a.social-vimeo{href: "http://vimeo.com", target: "_blank"} Vimeo
+          %a.social-linkedin{href: "http://linkedin.com", target: "_blank"} linkedin
+          %a.social-dribbble{href: "http://dribbble.com", target: "_blank"} Dribbble
+          %a.social-flickr{href: "http://flickr.com", target: "_blank"} flickr
+          %a.social-forrst{href: "http://forrst.com", target: "_blank"} forrst
+          %a.social-google{href: "http://google.com", target: "_blank"} google
+          / a href="http://youtube.com" target="_blank" class="social-youtube">youtube</a
+          .clearfix
+        / close .social-icons
+      / close .content-boxed
+    / close #sidebar
+    .clearfix
+  / close .width-container
+/ close #main

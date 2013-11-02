@@ -1,0 +1,117 @@
+#main
+  .width-container
+    #container-sidebar
+      .content-boxed
+        %h2.title-bg Search Listings For Rent
+        #sortable-search
+          %select
+            %option{selected: "selected", value: ""} Default Sorting
+            %option{value: ""} Most Recent
+            %option{value: ""} Price (high to low)
+            %option{value: ""} Price (low to high)
+        #map-container
+          #map-listing
+        %script{src: "http://maps.google.com/maps/api/js?sensor=true", type: "text/javascript"}
+        %script{src: "js/jquery.gomap-1.3.2.min.js"}
+        :javascript
+          jQuery(document).ready(function($) {
+              var array_address = []
+                            var array_address1 = []
+                            array_address = #{@addresses}
+                            for(var i = 0; i < array_address.length; i++) {
+                              array_address1.push({address: array_address[i] ,title: "marker title 1",icon: "images/home.png" })
+                              }
+                            $("#map-listing").goMap({
+                                markers: array_address1
+                                                  ,
+                        		disableDoubleClickZoom: true,
+                        		zoom: 14,
+                        		//address: 'Pakistan', //have this be the first items address so that one is centered
+                        		maptype: 'ROADMAP'
+                            });
+
+          });
+        - @properties.each do |property|
+          = render partial: "properties/listing", locals: {property: property}
+        .clearfix
+      / close .content-boxed
+      .clearfix
+      .page-count=page_entries_info @properties
+      .clearfix
+      = paginate @properties
+      .clearfix
+    / close #container-sidebar
+    #sidebar
+      .content-boxed
+        %h2.title-bg Advanced Search
+        .advanced-search-form
+          %form.advanced-searchform{action: "/search", method: "get"}
+            %div
+              %input#keyword.field{name: "keyword", placeholder: "Enter a keyword...", type: "text"}/
+            %div
+              %select{name: "status"}
+                %option{selected: "selected", value: ""} Property Status
+                - PropertyStatus.all.each do |status|
+                  %option{value: status.name}=status.name
+            .advanced-two-column
+              %label.assistive-text{for: "locations"} Price Min:
+              %input#price-min.field{name: "price-min", placeholder: "Min Price", type: "text"}/
+            .advanced-two-column.last-two-column
+              %label.assistive-text{for: "locations"} Price Max:
+              %input#price-max.field{name: "price-max", placeholder: "Max price", type: "text"}/
+            .clearfix
+            %div
+              %select{name: "city"}
+                %option{selected: "selected", value: ""} Choose City
+                %option{value: "Toronto"} Toronto
+                %option{value: "Mississauga"} Mississauga
+                %option{value: "Vaughan"} Vaughan
+                %option{value: "Richmond Hill"} Richmond Hill
+                %option{value: "Markham"} Markham
+            .advanced-two-column.drop-down-fix
+              %label.assistive-text{for: "locations"} Province:
+              %select{name: "province"}
+                %option{selected: "selected", value: ""} Choose Province
+                %option{value: "Ontario"} Ontario
+                %option{value: "Quebec"} Quebec
+                %option{value: "Manitoba"} Manitoba
+                %option{value: "Alberta"} Alberta
+                %option{value: "Saskatchewan"} Saskatchewan
+                %option{value: "British Columbia"} British Columbia
+            .clearfix
+            .advanced-two-column.drop-down-fix
+              %label.assistive-text{for: "locations"} Beds:
+              %select{name: "beds"}
+                %option{selected: "selected", value: ""} Beds
+                - (1..4).each do |i|
+                  - if i.to_s == @bedrooms
+                    %option{selected: "selected", value: i.to_s}="#{i}+"
+                  - else
+                    %option{value: i.to_s}="#{i}+"
+            .advanced-two-column.last-two-column
+              %label.assistive-text{for: "locations"} Baths:
+              %select{name: "baths"}
+                %option{value: ""} Baths
+                - (1..4).each do |i|
+                  - if i.to_s == @bathrooms
+                    %option{selected: "selected", value: i.to_s}="#{i}+"
+                  - else
+                    %option{value: i.to_s}="#{i}+"
+            .clearfix
+            .drop-down-spacing
+              %select{name: "type"}
+                %option{selected: "selected", value: ""} Property Type
+                - PropertyType.all.each do |type|
+                  %option{value: type.name}=type.name
+            %div
+              %select{name: "sqft"}
+                %option{selected: "selected", value: ""} Square Feet
+                %option{value: "500"} 500+ sqft
+                %option{value: "1000"} 1000+ sqft
+                %option{value: "1500"} 1500+ sqft
+                %option{value: "2000"} 2000+ sqft
+                %option{value: "2500"} 2500+ sqft
+            %div
+              %input.submit-advanced{name: "submit", type: "submit", value: "Search"}/
+      / close .content-boxed
+    = render "shared/sidebar"

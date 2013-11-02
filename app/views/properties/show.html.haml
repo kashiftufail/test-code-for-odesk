@@ -1,0 +1,241 @@
+#main
+  .width-container
+    #container-sidebar
+      .content-boxed
+        %h2.title-bg
+          = @property.address
+          %span= "$"+@property.price.to_s
+        .property-listing-single
+          .notification-listing Open House
+          #property-single-slider
+            #slider.flexslider
+              %ul.slides
+                %li
+                  %a{href: @property.image.url(:thumb,:width => "880" ,:height => "440"), rel: "prettyPhoto[gallery]"}
+                    %img{src: @property.image.url(:thumb,:width => "880" ,:height => "440")}/
+                %li
+                  %a{href: @property.image.url(:thumb,:width => "880" ,:height => "440"), rel: "prettyPhoto[gallery]"}
+                    %img{src: @property.image.url(:thumb,:width => "880" ,:height => "440")}/
+                %li
+                  %a{href: @property.image.url(:thumb,:width => "880" ,:height => "440"), rel: "prettyPhoto[gallery]"}
+                    %img{src: @property.image.url(:thumb,:width => "880" ,:height => "440")}/
+                %li
+                  %a{href: @property.image.url(:thumb,:width => "880" ,:height => "440"), rel: "prettyPhoto[gallery]"}
+                    %img{src: @property.image.url(:thumb,:width => "880" ,:height => "440")}/
+                %li
+                  %a{href: @property.image.url(:thumb,:width => "880" ,:height => "440"), rel: "prettyPhoto[gallery]"}
+                    %img{src: @property.image.url(:thumb,:width => "880" ,:height => "440")}/
+            #carousel.flexslider
+              %ul.slides
+                %li
+                  %img{src: @property.image.url(:thumb,:width => "290" ,:height => "120") }/
+                %li
+                  %img{src: @property.image.url(:thumb,:width => "290" ,:height => "120")}/
+                %li
+                  %img{src: @property.image.url(:thumb,:width => "290" ,:height => "120")}/
+                %li
+                  %img{src: @property.image.url(:thumb,:width => "290" ,:height => "120")}/
+                %li
+                  %img{src: @property.image.url(:thumb,:width => "290" ,:height => "120")}/
+          .clearfix
+          :javascript
+            jQuery(document).ready(function($) {
+                $(window).load(function(){
+                  $('#carousel').flexslider({
+                    animation: "slide",
+                    controlNav: false,
+                    animationLoop: false,
+                    slideshow: false,
+                    itemWidth: 145,
+                    itemMargin: 15,
+                    asNavFor: '#slider'
+                  });
+
+                  $('#slider').flexslider({
+                    animation: "fade",
+                    controlNav: false,
+                    animationLoop: false,
+                    slideshow: false,
+                    sync: "#carousel",
+                    start: function(slider){
+                      $('body').removeClass('loading');
+                    }
+                  });
+                });
+            });
+        - if @property.description.present?
+          %p=@property.description
+        - else
+          %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec mi turpis, egestas nec ultrices a, fermentum sit amet ante. Nulla euismod felis ac eros gravida hendrerit. Nullam lobortis luctus quam non tristique. Praesent scelerisque commodo tellus, eu tempor erat hendrerit vitae. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam erat volutpat. Suspendisse congue dui non felis blandit dignissim.
+          %p Pellentesque vitae felis eu mi suscipit luctus a ullamcorper eros. Quisque lectus enim, hendrerit euismod adipiscing vitae, ultrices at ligula. Pellentesque sit amet lacus sapien, ac convallis odio. Pellentesque mattis, nunc nec varius posuere, tortor quam sodales lectus, a ultricies dui lorem eget justo. Sed id purus nisi. Nulla ligula lacus, volutpat sed consectetur nec, molestie nec magna. Vestibulum porttitor dapibus risus, eget bibendum sem sodales non.
+        %h5.additional-features-headline Additional Features
+        %ul.additional-features
+          %li Property Status: #{@property.property_status.name}
+          %li MLS #: 21218082
+          %li Roof: Composition
+          %li Foundation: Concrete Perimeter
+          %li Heating Fuel: other
+          %li View: Vineyard
+        .clearfix
+        .share-section-listing
+          %span.share-text Share this:
+          :javascript
+            var switchTo5x=true;
+          %script{src: "http://w.sharethis.com/button/buttons.js", type: "text/javascript"}
+          :javascript
+            stLight.options({publisher: "b779a7d6-8947-431e-8a89-abe575e1b4b0"});
+          %span.st_facebook{displaytext: "Facebook"}
+          %span.st_twitter{displaytext: "Tweet"}
+          %span.st_pinterest{displaytext: "Pinterest"}
+          %span.st_email{displaytext: "Email"}
+          %span.st_print
+            %a{href: "javascript:window.print()"} Print
+          .clearfix
+        .clearfix
+      / close .content-boxed
+      %br/
+      .content-boxed
+        %h2.title-bg Agent Information
+        .agent-post
+          .agent-thumb
+            %a{href: "agent-listings.html"}
+              %img{src: "/images/agent-thumb.jpg"}/
+          .agent-details
+            %h5
+              %a{href: "agent-listings.html"} Agent Name
+            %h6 Sub-title
+            %ul.fancy-list
+              %li
+                %span Office:
+                (800) 232-4444
+              %li
+                %span Mobile:
+                (800) 456-5433
+              %li
+                %span Fax:
+                (800) 432-5536
+          .agent-social
+            .message-send
+              %a.button.secondary-button{href: "mailto:no-reply@progressionstudios.com"} Send a message
+            .social-icons
+              %a.facebook{href: "http://facebook.com", target: "_blank"} F
+              %a.twitter{href: "https://twitter.com/Progression_S", target: "_blank"} t
+              %a.skype{href: "http://skype.com", target: "_blank"} s
+              %a.linkedin{href: "http://linkedin.com/", target: "_blank"} l
+            / close .social-icons
+          .clearfix
+        .clearfix
+      / close .content-boxed
+    / close #container-sidebar
+    #sidebar
+      .content-boxed
+        %h2.title-bg Location & Information
+        #sidebar-map
+          #map-listing-single
+          %script{src: "http://maps.google.com/maps/api/js?sensor=true", type: "text/javascript"}
+          %script{src: "/js/jquery.gomap-1.3.2.min.js"}
+          :javascript
+            jQuery(document).ready(function($) {
+                $("#map-listing-single").goMap({ 
+                    markers: [{  
+                        address: '7931 FERRARI WAY, WINDSOR CA 95492', 
+                        title: 'marker title 1' ,
+            			icon: 'images/home.png'
+                    }],
+            		disableDoubleClickZoom: true,
+            		zoom: 12,
+            		maptype: 'ROADMAP'
+                }); 
+
+            });
+        #more-map
+          %a{href: "https://maps.google.com/maps?q=7931+FERRARI+WAY,+WINDSOR+CA+95492&hl=en&sll=39.757846,-121.805901&sspn=0.196892,0.293884&hnear=7931+Ferrari+Way,+Windsor,+California+95492&t=m&z=16&output=embed?iframe=true&width=90%&height=90%", rel: "prettyPhoto[iframes]"} Larger Map ↑
+          / just plug in the address and leave other options alone
+        .clearfix
+        .property-meta-single
+          .listings-address-widget= @property.address
+          .listings-street-widget= @property.city
+          .listings-price-widget= "$"+@property.price.to_s
+        %ul#house-details-sidebar
+          %li
+            = @property.property_type.name
+            %span
+          %li
+            Bedrooms:
+            %span= @property.bedrooms
+          %li
+            Bathrooms:
+            %span= @property.bathrooms
+          %li
+            Property type:
+            %span= @property.property_status.name
+          %li
+            Size:
+            %span= @property.sqft
+          %li
+            Added:
+            %span=time_ago_in_words(@property.created_at).to_s+" ago"
+          %li
+            Zip:
+            %span=@property.postal_code
+      / close .content-boxed
+      -#.content-boxed
+        %h2.title-bg Featured Listings
+        %ul.widget-listings
+          %li
+            %a{href: "#"}
+              .property-thumbnail
+                %img{alt: "", src: "/images/widget-thumbnail.jpg"}/
+              .property-meta
+                .listings-address-widget 3200 Oak Rd
+                .listings-street-widget Boulder, CO 25753
+                .listings-price-widget $750,000
+              .clearfix
+          %li
+            %a{href: "#"}
+              .property-thumbnail
+                %img{alt: "", src: "/images/widget-thumbnail.jpg"}/
+              .property-meta
+                .listings-address-widget 3200 Oak Rd
+                .listings-street-widget Boulder, CO 25753
+                .listings-price-widget $750,000
+              .clearfix
+          %li
+            %a{href: "#"}
+              .property-thumbnail
+                %img{alt: "", src: "/images/widget-thumbnail.jpg"}/
+              .property-meta
+                .listings-address-widget 3200 Oak Rd
+                .listings-street-widget Boulder, CO 25753
+                .listings-price-widget $750,000
+              .clearfix
+          %li
+            %a{href: "#"}
+              .property-thumbnail
+                %img{alt: "", src: "/images/widget-thumbnail.jpg"}/
+              .property-meta
+                .listings-address-widget 3200 Oak Rd
+                .listings-street-widget Boulder, CO 25753
+                .listings-price-widget $750,000
+              .clearfix
+      / close .content-boxed
+      .content-boxed
+        %h2.title-bg Social Networks
+        .social-icons-widget
+          %a.social-rss{href: "#", target: "_blank"} RSS
+          %a.social-facebook{href: "http://facebook.com", target: "_blank"} Facebook
+          %a.social-twitter{href: "http://twitter.com", target: "_blank"} Twitter
+          %a.social-skype{href: "http://skype.com", target: "_blank"} skype
+          %a.social-vimeo{href: "http://vimeo.com", target: "_blank"} Vimeo
+          %a.social-linkedin{href: "http://linkedin.com", target: "_blank"} linkedin
+          %a.social-dribbble{href: "http://dribbble.com", target: "_blank"} Dribbble
+          %a.social-flickr{href: "http://flickr.com", target: "_blank"} flickr
+          %a.social-forrst{href: "http://forrst.com", target: "_blank"} forrst
+          %a.social-google{href: "http://google.com", target: "_blank"} google
+          / a href="http://youtube.com" target="_blank" class="social-youtube">youtube</a
+          .clearfix
+        / close .social-icons
+      / close .content-boxed
+    / close #sidebar
+    .clearfix
+  / close .width-container

@@ -1,0 +1,63 @@
+#main
+  .width-container
+    #container-sidebar
+      .content-boxed
+        %h2.title-bg Danielle's Blog
+
+        - @blog_entries.each do |entry|
+          .type-post
+            %h3
+              %a{href: blog_entry_path(entry)}=entry.title
+            .post-data
+              Posted on
+              %a{href: "#"}=entry.created_at.strftime("%b %-d, %Y %l:%M %p")
+              by
+              %a{href: "#"}=entry.author.name
+            - if entry.cover_image.present?
+              .featured-image
+                %a{href: blog_entry_path(entry)}
+                  %img{alt: "", src: entry.cover_image.url(:regular)}/
+            =entry.html.html_safe
+            %p
+              %a{href: blog_entry_path(entry)} Continue reading →
+            .clearfix
+          .clearfix
+      / close .content-boxed
+      .clearfix
+      
+      .page-count=page_entries_info @blog_entries
+      .clearfix
+      = paginate @blog_entries
+      .clearfix
+      .pagination
+        = link_to_next_page(@blog_entries, ">")
+      .clearfix
+    / close #container-sidebar
+    #sidebar
+      .content-boxed
+        %h2.title-bg Contact Danielle
+        .location-widget
+          %span> Location
+          \: 123 University Ave
+          %br/
+          Toronto ON, L6B 1L9 CA
+          %br/
+          = succeed "" do
+            %span Mobile: (416) 268-1118
+          %br/
+          = succeed "" do
+            %span Office (416) 298-8200
+          %br/
+          = succeed "" do
+            %span Fax (416) 298-6602
+          %br/
+          = succeed "" do
+            %span Email
+          %a{href: "#"} danielle@desjardinsrealty.com
+
+    = render "shared/sidebar"
+    :javascript
+      $(".next a").text("›")
+      $(".last a").text("»")
+      $(".prev a").text("‹")
+      $(".first a").text("«")

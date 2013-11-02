@@ -1,0 +1,34 @@
+.property-listing
+  .property-listing-thumb
+    %a{href: "javascript:;"}
+      %img{alt: "", src: property.image.url(:thumb)}/
+  .property-information
+    .property-information-address
+      %a{href: "javascript:;"}= property.address
+    .property-information-location
+      %a{href: "javascript:;"}= property.city
+    .property-information-price
+      %a{href: "javascript:;"}= "$"+property.price.to_s
+    .property-highlight
+      .sq-highlight=property.sqft
+      .bed-higlight=property.bedrooms
+      .bath-higlight=property.bathrooms
+      .property-highlight
+      .garage-higlight=property.cars
+      .time-higlight="Listed "+time_ago_in_words(property.created_at).to_s+" ago"
+    .clearfix
+  .clearfix
+  .property-listing-base
+    .grid2column
+      .property-status
+        Property Status:
+        %a{href: "#"}=property.property_status.name
+    .grid2column.lastcolumn
+      %a.button.secondary-button{href: property_path(property)} View Listing
+    .clearfix
+    %hr/
+
+.clearfix
+
+
+

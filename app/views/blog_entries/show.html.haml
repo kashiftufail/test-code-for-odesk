@@ -1,0 +1,105 @@
+#main
+  .width-container
+    #container-sidebar
+      .content-boxed
+        %h2.title-bg Our Blog
+        .type-post
+          %h3=@entry.title
+          .post-data
+            Posted on
+            %a{href: "#"}=@entry.created_at.strftime("%b %-d, %Y %l:%M %p")
+            by
+            %a{href: "#"}=@entry.author.name
+          - if @entry.cover_image.present?
+            .featured-image
+              %a{href: @entry.cover_image.url(:regular), rel: "PrettyPhoto"}
+                %img{alt: "", src: @entry.cover_image.url(:regular)}/
+          = @entry.html.html_safe
+          .clearfix
+        / close .type-post
+        .clearfix
+      / close .content-boxed
+      %br/
+      .content-boxed
+        %h2.title-bg Comments
+        %ol.commentlist
+          - @entry.comments.each do |comment|
+            %li#li-comment-9.comment.byuser.comment-author-progressionstudios.bypostauthor.even.thread-even.depth-1
+              %article#comment-9.comment
+                .comment-meta
+                  .comment-author.vcard
+                    %img.avatar.avatar-68.photo{alt: "", height: "68", src: "/assets/avatar.png", width: "68"}/
+                    %span.fn=comment.name
+                    on
+                    %a{href: "#"}
+                      =time_tag comment.created_at
+                    %span.says said:
+                  / .comment-author .vcard
+                .comment-content
+                  %p=comment.text
+                .reply
+                  %a.comment-reply-link{href: "#reply"}
+                    Reply
+                    %span ↓
+                / .reply
+              / #comment-##
+            
+        .clearfix
+        %a{:name => "reply"}
+        %h2.grey-header-bar Leave a reply
+        #reply
+          = simple_form_for @comment do |f|
+            = f.input :name, placeholder: "* Name", label: false
+            = f.input :email, placeholder: "Email (will not be shared or shown on site)", label: false
+            = f.input :website, placeholder: "Website", label: false
+            = f.input :text, placeholder: "Comment", label: false, input_html: {rows: 10}
+            = f.input :blog_entry_id, :as => :hidden, :input_html => { :value => params[:id] }
+            = f.submit "Post comment", class: "submit"
+        .clearfix
+      / close .content-boxed
+    / close #container-sidebar
+    #sidebar
+      .content-boxed
+        %h2.title-bg Search
+        %form.searchform{action: "", method: "get"}
+          %label.assistive-text{for: "s"} Search:
+          %input#s.field{name: "s", placeholder: "Search our blog...", type: "text"}/
+          %input#searchsubmit.submit{name: "submit", type: "submit", value: "Search"}/
+      / close .content-boxed
+      .content-boxed
+        %h2.title-bg Archives
+        %ul
+          %li
+            %a{href: "#"} June
+          %li
+            %a{href: "#"} May
+          %li
+            %a{href: "#"} May
+          %li
+            %a{href: "#"} March
+          %li
+            %a{href: "#"} February
+          %li
+            %a{href: "#"} January
+      / close .content-boxed
+      .content-boxed
+        %h2.title-bg Social Networks
+        .social-icons-widget
+          %a.social-rss{href: "#", target: "_blank"} RSS
+          %a.social-facebook{href: "http://facebook.com", target: "_blank"} Facebook
+          %a.social-twitter{href: "http://twitter.com", target: "_blank"} Twitter
+          %a.social-skype{href: "http://skype.com", target: "_blank"} skype
+          %a.social-vimeo{href: "http://vimeo.com", target: "_blank"} Vimeo
+          %a.social-linkedin{href: "http://linkedin.com", target: "_blank"} linkedin
+          %a.social-dribbble{href: "http://dribbble.com", target: "_blank"} Dribbble
+          %a.social-flickr{href: "http://flickr.com", target: "_blank"} flickr
+          %a.social-forrst{href: "http://forrst.com", target: "_blank"} forrst
+          %a.social-google{href: "http://google.com", target: "_blank"} google
+          / a href="http://youtube.com" target="_blank" class="social-youtube">youtube</a
+          .clearfix
+        / close .social-icons
+      / close .content-boxed
+    / close #sidebar
+    .clearfix
+  / close .width-container
+/ close #main

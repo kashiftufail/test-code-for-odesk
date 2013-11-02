@@ -1,0 +1,291 @@
+// Place all the styles related to the Home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/*Contact form on pages*/
+
+#contact-form-new{
+  width: 300px;
+
+  border-radius: 5px;
+  border: 1px solid #cccccc;
+  margin-top: 19px;
+  float:right;
+  margin-left: 20px;
+
+  .input {
+    margin-bottom: 9px;
+  }
+
+  .numeric {
+    float: left;
+    margin-right: 5px;
+  }
+
+  .city {
+    float: left;
+    width: 190px;
+
+    input {
+      width: 158px;
+    }
+  }
+
+  .province {
+    float: left;
+
+    width: 60px;
+
+    input {
+      width: 50px;
+    }
+  }
+
+  .postal_code {
+    input {
+      width: 100px;
+    }
+  }
+
+  input[type="number"] {
+    width: 100px;
+  }
+}
+
+
+#contact-form-new h4{
+  display: inline-block;
+  padding: 0px;
+  font-size: 14px;
+  font-weight: 600;
+  margin: 10px 0px;
+  color: #6c6c6c;
+
+}
+
+#contact-form-new .h4container{
+  border-left:1px solid #cacaca;
+  height: 53px;
+  display: inline-block;
+  padding-left: 10px;
+}
+
+#contact-form-new .form-header{
+  height: 53px;
+  border-bottom:1px solid #cacaca;
+  line-height: 38px;
+}
+
+#contact-form-new .form-header img{
+  padding: 17px 8px 0px 12px;
+  float: left;
+
+}
+
+#contact-form-new form{
+  padding: 17px;
+}
+
+#contact-form-new form input{
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  height: 32px;
+  line-height: 34px;
+  font-size: 12px;
+  color: #666666;
+  padding: 0 11px;
+  background-color: #e5e5e5;
+  border-top: 1px inset;
+  border-left: 0px;
+  width: 240px;
+}
+
+
+
+#contact-form-new form textarea{
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  height: 110px;
+  line-height: 34px;
+  font-size: 12px;
+  color: #666666!important;
+  padding: 0 11px;
+  background-color: #e5e5e5;
+  margin-bottom: 9px;
+  border-top: 1px inset;
+  border-left: 0px;
+  resize:none;
+  width: 240px;
+}
+
+#contact-form-new form input.small{
+  width: 99px;
+}
+
+#contact-form-new form input.large, #contact-form-new form textarea.large{
+  width: 242px;
+}
+
+#contact-form-new form input[type="submit"]{
+  margin:0 auto;
+  height: 42px;
+  background-color: #6d6d6d;
+  width: 124px;
+  text-align: center;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  border: 0px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+}
+
+
+.cta-button-wrap{
+  background-color: #eeeeee;
+  padding: 27px 0px 55px;
+}
+
+
+.cta-buttons .cta{
+  width: 298px;
+  float: left;
+  border: 1px solid #d8d8d8;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  margin-right: 19px;
+  text-align: center;
+  padding: 31px 0px 17px;
+}
+
+.cta-buttons .cta:last-of-type{
+  margin-right: 0px;
+}
+
+.cta-buttons .cta p{
+  width: 250px;
+  margin: 0 auto;
+  font-size: 13px;
+  color: #6c6c6c;
+}
+
+.cta-buttons .cta h3{
+  margin: 32px 0px 40px;
+  color: #1d97cf;
+}
+
+
+.cta-button{
+  background: #6d6d6d; /* Old browsers */
+  background: -moz-linear-gradient(top,  #6d6d6d 0%, #6d6d6d 78%, #666666 95%, #494949 98%, #494949 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#6d6d6d), color-stop(78%,#6d6d6d), color-stop(95%,#666666), color-stop(98%,#494949), color-stop(100%,#494949)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  #6d6d6d 0%,#6d6d6d 78%,#666666 95%,#494949 98%,#494949 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  #6d6d6d 0%,#6d6d6d 78%,#666666 95%,#494949 98%,#494949 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  #6d6d6d 0%,#6d6d6d 78%,#666666 95%,#494949 98%,#494949 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  #6d6d6d 0%,#6d6d6d 78%,#666666 95%,#494949 98%,#494949 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6d6d6d', endColorstr='#494949',GradientType=0 ); /* IE6-9 */
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #fff;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  display: inline-block;
+  margin: 20px 0px 0px;
+}
+
+.container {
+  padding: 10px;
+  margin: 0 auto;
+  max-width: 945px;
+}
+
+.slides li {
+  height: 325px;
+  overflow: hidden;
+}
+
+.error {
+  color: maroon;
+  padding: 7px
+}
+
+.flash {
+  padding: 10px;
+  margin-bottom: -24px;
+}
+
+.alert-message {
+  p {
+    margin: 0;
+  }
+  width: 100%;
+  max-width: 918px;
+  margin: 0 auto;
+  text-align: center;
+  border-radius: 5px;
+  padding: 10px;
+  border: 1px solid #cccccc;
+}
+
+.alert-info {
+  color: #3a87ad;
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+}
+
+.alert-success {
+  color: #468847;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+}
+
+.alert-warning {
+  color: #c09853;
+  background-color: #fcf8e3;
+  border-color: #fbeed5;
+}
+
+.alert-danger, .alert-error {
+  color: #b94a48;
+  background-color: #f2dede;
+  border-color: #eed3d7;
+}
+
+.featured-listings {
+  #container-sidebar {
+    width: 702px;
+  }
+
+}
+#contact-form {
+  .input {
+    margin-bottom: 30px;
+  }
+
+  textarea {
+    height: 150px;
+  }
+  .submit {
+    margin-bottom: 15px;
+  }
+}
+
+.recaptcha-error {
+  padding-bottom: 15px;
+}
+
+.sidebar {
+  width: 260px;
+  float: left;
+}
+
+nav.pagination {
+  float: left;
+  position: relative;
+
+}

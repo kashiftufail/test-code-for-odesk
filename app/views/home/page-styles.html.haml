@@ -1,0 +1,251 @@
+#main
+  .width-container
+    #container-sidebar
+      .content-boxed
+        %h2.title-bg Page Styles
+        %h4 List Styles
+        .grid2column
+          %ul.checkmark
+            %li Item #1
+            %li Item #2
+            %li Item #3
+            %li Item #4
+        .grid2column.lastcolumn
+          %ul.arrow
+            %li Item #1
+            %li Item #2
+            %li Item #3
+            %li Item #4
+        .clearfix
+        .grid2column
+          %ul
+            %li Item #1
+            %li Item #2
+            %li Item #3
+            %li Item #4
+        .grid2column.lastcolumn
+          %ol
+            %li Item #1
+            %li Item #2
+            %li Item #3
+            %li Item #4
+        .clearfix
+        %hr/
+        %h4 Default Button
+        .grid2column
+          %a.button{href: "http://themeforest.net/user/ProgressionStudios?ref=ProgressionStudios", target: "_blank"} Default Button
+        .grid2column.lastcolumn
+          %a.button.secondary-button{href: "http://themeforest.net/user/ProgressionStudios?ref=ProgressionStudios", target: "_blank"} Secondary Button
+        .clearfix
+        %hr/
+        %h4 Tabbed Content
+        / Standard <ul> with class of "tabs"
+        %ul.tabs
+          / Give href an ID value of corresponding "tabs-content" <li>'s
+          %li
+            %a.active{href: "#simple"} Simple
+          %li
+            %a{href: "#lightweight"} Lightweight
+          %li
+            %a{href: "#mobileFriendly"} Mobile
+        / Standard <ul> with class of "tabs-content"
+        %ul.tabs-content
+          / Give ID that matches HREF of above anchors
+          %li#simple.active The tabs are clean and simple unordered-list markup and basic CSS.
+          %li#lightweight The tabs are cross-browser, but don't need a ton of hacky CSS or markup.
+          %li#mobileFriendly The tabs work like a charm even on mobile devices.
+        %hr/
+        %h4 Featured Slider
+        .secondary-slider
+          .flexslider
+            %ul.slides
+              %li
+                %a{href: "#"}
+                  %img{alt: "", src: "images/demo/slide1.jpg"}/
+              %li
+                %a{href: "#"}
+                  %img{alt: "", src: "images/demo/slide2.jpg"}/
+              %li
+                %a{href: "#"}
+                  %img{alt: "", src: "images/demo/slide3.jpg"}/
+              %li
+                %a{href: "#"}
+                  %img{alt: "", src: "images/demo/slide4.jpg"}/
+        .clearfix
+        :javascript
+          jQuery(document).ready(function($) {
+              $('.flexslider').flexslider({
+          		animation: "fade",              //String: Select your animation type, "fade" or "slide"
+          		slideDirection: "horizontal",   //String: Select the sliding direction, "horizontal" or "vertical"
+          		slideshow: true,                //Boolean: Animate slider automatically
+          		slideshowSpeed: 6000,           //Integer: Set the speed of the slideshow cycling, in milliseconds
+          		animationDuration: 500,         //Integer: Set the speed of animations, in milliseconds
+          		directionNav: true,             //Boolean: Create navigation for previous/next navigation? (true/false)
+          		controlNav: true,               //Boolean: Create navigation for paging control of each clide? Note: Leave true for manualControls usage
+          		keyboardNav: true,              //Boolean: Allow slider navigating via keyboard left/right keys
+          		mousewheel: false,              //Boolean: Allow slider navigating via mousewheel
+          		prevText: "Previous",           //String: Set the text for the "previous" directionNav item
+          		nextText: "Next",               //String: Set the text for the "next" directionNav item
+          		pausePlay: false,               //Boolean: Create pause/play dynamic element
+          		pauseText: 'Pause',             //String: Set the text for the "pause" pausePlay item
+          		playText: 'Play',               //String: Set the text for the "play" pausePlay item
+          		randomize: false,               //Boolean: Randomize slide order
+          		slideToStart: 0,                //Integer: The slide that the slider should start on. Array notation (0 = first slide)
+          		useCSS: true,
+          		animationLoop: true,            //Boolean: Should the animation loop? If false, directionNav will received "disable" classes at either end
+          		pauseOnAction: true,            //Boolean: Pause the slideshow when interacting with control elements, highly recommended.
+          		pauseOnHover: false            //Boolean: Pause the slideshow when hovering over slider, then resume when no longer hovering
+
+              });
+          });
+        %hr/
+        %h4 Column Examples
+        .grid2column
+          %h5 1/2
+          %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. In augue dolor, semper eu cursus et, pulvinar tempor nisl. Nullam iaculis rutrum posuere. Morbi volutpat tempus nisi sit amet ultrices. Nullam nec sollicitudin enim. Integer a diam nisi, non vestibulum lacus. Aenean erat ligula, pharetra non eleifend a, luctus ac orci. Integer euismod dignissim sodales. Curabitur massa lorem, consequat quis consectetur vel, imperdiet id dui. Integer tristique risus placerat tellus convallis et interdum lorem feugiat. Etiam pretium lacus vel eros semper at feugiat eros rutrum.
+        .grid2column.lastcolumn
+          %h5 1/2
+          %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. In augue dolor, semper eu cursus et, pulvinar tempor nisl. Nullam iaculis rutrum posuere. Morbi volutpat tempus nisi sit amet ultrices. Nullam nec sollicitudin enim. Integer a diam nisi, non vestibulum lacus. Aenean erat ligula, pharetra non eleifend a, luctus ac orci. Integer euismod dignissim sodales. Curabitur massa lorem, consequat quis consectetur vel, imperdiet id dui. Integer tristique risus placerat tellus convallis et interdum lorem feugiat. Etiam pretium lacus vel eros semper at feugiat eros rutrum.
+        .clearfix
+        .grid2column
+          %h5 1/2
+          %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. In augue dolor, semper eu cursus et, pulvinar tempor nisl. Nullam iaculis rutrum posuere. Morbi volutpat tempus nisi sit amet ultrices. Nullam nec sollicitudin enim. Integer a diam nisi, non vestibulum lacus. Aenean erat ligula, pharetra non eleifend a, luctus ac orci. Integer euismod dignissim sodales. Curabitur massa lorem, consequat quis consectetur vel, imperdiet id dui. Integer tristique risus placerat tellus convallis et interdum lorem feugiat. Etiam pretium lacus vel eros semper at feugiat eros rutrum.
+        .grid4column
+          %h5 1/4
+          %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. In augue dolor, semper eu cursus et, pulvinar tempor nisl. Nullam iaculis rutrum posuere. Morbi volutpat tempus nisi sit amet ultrices. Nullam nec sollicitudin enim. Integer a diam nisi, non vestibulum lacus.
+        .grid4column.lastcolumn
+          %h5 1/4
+          %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. In augue dolor, semper eu cursus et, pulvinar tempor nisl. Nullam iaculis rutrum posuere. Morbi volutpat tempus nisi sit amet ultrices. Nullam nec sollicitudin enim. Integer a diam nisi, non vestibulum lacus.
+        .clearfix
+        .grid4column
+          %h5 1/4
+          %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. In augue dolor, semper eu cursus et, pulvinar tempor nisl. Nullam iaculis rutrum posuere. Morbi volutpat tempus nisi sit amet ultrices. Nullam nec sollicitudin enim. Integer a diam nisi, non vestibulum lacus.
+        .grid4column
+          %h5 1/4
+          %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. In augue dolor, semper eu cursus et, pulvinar tempor nisl. Nullam iaculis rutrum posuere. Morbi volutpat tempus nisi sit amet ultrices. Nullam nec sollicitudin enim. Integer a diam nisi, non vestibulum lacus.
+        .grid4column
+          %h5 1/4
+          %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. In augue dolor, semper eu cursus et, pulvinar tempor nisl. Nullam iaculis rutrum posuere. Morbi volutpat tempus nisi sit amet ultrices. Nullam nec sollicitudin enim. Integer a diam nisi, non vestibulum lacus.
+        .grid4column.lastcolumn
+          %h5 1/4
+          %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. In augue dolor, semper eu cursus et, pulvinar tempor nisl. Nullam iaculis rutrum posuere. Morbi volutpat tempus nisi sit amet ultrices. Nullam nec sollicitudin enim. Integer a diam nisi, non vestibulum lacus.
+        .clearfix
+        .grid4columnbig
+          %h5 3/4
+          %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. In augue dolor, semper eu cursus et, pulvinar tempor nisl. Nullam iaculis rutrum posuere. Morbi volutpat tempus nisi sit amet ultrices. Nullam nec sollicitudin enim. Integer a diam nisi, non vestibulum lacus. Aenean erat ligula, pharetra non eleifend a, luctus ac orci. Integer euismod dignissim sodales. Curabitur massa lorem, consequat quis consectetur vel, imperdiet id dui. Integer tristique risus placerat tellus convallis et interdum lorem feugiat. Etiam pretium lacus vel eros semper at feugiat eros rutrum. Aenean erat ligula, pharetra non eleifend a, luctus ac orci. Integer euismod dignissim sodales. Curabitur massa lorem, consequat quis consectetur vel, imperdiet id dui. Integer tristique risus placerat tellus convallis et interdum lorem feugiat. Etiam pretium lacus vel eros semper at feugiat eros rutrum.
+        .grid4column.lastcolumn
+          %h5 1/4
+          %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. In augue dolor, semper eu cursus et, pulvinar tempor nisl. Nullam iaculis rutrum posuere. Morbi volutpat tempus nisi sit amet ultrices. Nullam nec sollicitudin enim. Integer a diam nisi, non vestibulum lacus.
+        .clearfix
+        .grid3column
+          %h5 1/3
+          %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. In augue dolor, semper eu cursus et, pulvinar tempor nisl. Nullam iaculis rutrum posuere. Morbi volutpat tempus nisi sit amet ultrices. Nullam nec sollicitudin enim. Integer a diam nisi, non vestibulum lacus.
+        .grid3column
+          %h5 1/3
+          %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. In augue dolor, semper eu cursus et, pulvinar tempor nisl. Nullam iaculis rutrum posuere. Morbi volutpat tempus nisi sit amet ultrices. Nullam nec sollicitudin enim. Integer a diam nisi, non vestibulum lacus.
+        .grid3column.lastcolumn
+          %h5 1/3
+          %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. In augue dolor, semper eu cursus et, pulvinar tempor nisl. Nullam iaculis rutrum posuere. Morbi volutpat tempus nisi sit amet ultrices. Nullam nec sollicitudin enim. Integer a diam nisi, non vestibulum lacus.
+        .clearfix
+        .grid3columnbig
+          %h5 2/3
+          %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. In augue dolor, semper eu cursus et, pulvinar tempor nisl. Nullam iaculis rutrum posuere. Morbi volutpat tempus nisi sit amet ultrices. Nullam nec sollicitudin enim. Integer a diam nisi, non vestibulum lacus. Aenean erat ligula, pharetra non eleifend a, luctus ac orci. Integer euismod dignissim sodales. Curabitur massa lorem, consequat quis consectetur vel, imperdiet id dui. Integer tristique risus placerat tellus convallis et interdum lorem feugiat. Etiam pretium lacus vel eros semper at feugiat eros rutrum.
+        .grid3column.lastcolumn
+          %h5 1/3
+          %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. In augue dolor, semper eu cursus et, pulvinar tempor nisl. Nullam iaculis rutrum posuere. Morbi volutpat tempus nisi sit amet ultrices. Nullam nec sollicitudin enim. Integer a diam nisi, non vestibulum lacus.
+        .clearfix
+        .clearfix
+      / close .content-boxed
+    / close #container-sidebar
+    #sidebar
+      .content-boxed
+        %h2.title-bg Contact Us
+        .location-widget
+          %span> Location
+          \: 156 University Ave.
+          %br/
+          Palo Alto, CA 94301-1605.
+          %br/
+          = succeed ":" do
+            %span Phone
+          %br/
+          = succeed ":" do
+            %span Mobile
+          %br/
+          = succeed ":" do
+            %span Email
+          %a{href: "#"} admin@facebook.com
+      / close .content-boxed
+      .content-boxed
+        %h2.title-bg Social Networks
+        .social-icons-widget
+          %a.social-rss{href: "#", target: "_blank"} RSS
+          %a.social-facebook{href: "http://facebook.com", target: "_blank"} Facebook
+          %a.social-twitter{href: "http://twitter.com", target: "_blank"} Twitter
+          %a.social-skype{href: "http://skype.com", target: "_blank"} skype
+          %a.social-vimeo{href: "http://vimeo.com", target: "_blank"} Vimeo
+          %a.social-linkedin{href: "http://linkedin.com", target: "_blank"} linkedin
+          %a.social-dribbble{href: "http://dribbble.com", target: "_blank"} Dribbble
+          %a.social-flickr{href: "http://flickr.com", target: "_blank"} flickr
+          %a.social-forrst{href: "http://forrst.com", target: "_blank"} forrst
+          %a.social-google{href: "http://google.com", target: "_blank"} google
+          / a href="http://youtube.com" target="_blank" class="social-youtube">youtube</a
+          .clearfix
+        / close .social-icons
+      / close .content-boxed
+      .content-boxed
+        %h2.title-bg Twitter Feed
+        %a.twitter-timeline{"data-chrome" => "noheader transparent", "data-widget-id" => "313702344938360833", href: "https://twitter.com/Progression_S"} Tweets by @Progression_S
+        :javascript
+          !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+        .clearfix
+      / close .content-boxed
+      .content-boxed
+        %h2.title-bg Flickr Feed
+        :javascript
+          //Flickr Widget in Sidebar			
+          jQuery(document).ready(function($){		 			   
+          	// Our very special jQuery JSON fucntion call to Flickr, gets details of the most recent images			   
+          	$.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?id=52617155@N08&lang=en-us&format=json&jsoncallback=?", displayImages);  //YOUR IDGETTR GOES HERE
+          	function displayImages(data){																															   
+          		// Randomly choose where to start. A random number between 0 and the number of photos we grabbed (20) minus  7 (we are displaying 7 photos).
+          		var iStart = Math.floor(Math.random()*(0));	
+
+          		// Reset our counter to 0
+          		var iCount = 1;								
+
+          		// Start putting together the HTML string
+          		var htmlString = "<ul>";					
+
+          		// Now start cycling through our array of Flickr photo details
+          		$.each(data.items, function(i,item){
+
+          			// Let's only display 6 photos (a 2x3 grid), starting from a the first point in the feed				
+          			if (iCount > iStart && iCount < (iStart + 7)) {
+
+          				// I only want the ickle square thumbnails
+          				var sourceSquare = (item.media.m).replace("_m.jpg", "_s.jpg");		
+
+          				// Here's where we piece together the HTML
+          				htmlString += '<li><a href="' + item.link + '" target="_blank">';
+          				htmlString += '<img src="' + sourceSquare + '" alt="' + item.title + '" title="' + item.title + '"/>';
+          				htmlString += '</a></li>';
+          			}
+          			// Increase our counter by 1
+          			iCount++;
+          		});		
+
+          	// Pop our HTML in the #images DIV	
+          	$('.flickr-widget-1').html(htmlString + "</ul>");
+
+          	// Close down the JSON function call
+          	}
+
+          // The end of our jQuery function	
+          });
+        #flickr-widget.flickr-widget-1
+        .clearfix
+      / close .content-boxed
+    / close #sidebar
+    .clearfix
+  / close .width-container

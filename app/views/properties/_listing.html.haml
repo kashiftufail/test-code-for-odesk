@@ -1,0 +1,36 @@
+.property-listing
+  .property-listing-thumb
+    - if property.created_at > 3.days.ago
+      .notification-listing New Listing
+    %a{href: property_path(property)}
+      %img{alt: "", src: property.image.url(:thumb)}/
+  .property-information
+    .property-information-address
+      %a{href: property_path(property)}=property.address
+    .property-information-location
+      %a{href: property_path(property)}=property.city_state_postal_code
+    .property-information-price
+      %a{href: property_path(property)}=number_to_currency(property.price, precision: 0)
+    .property-highlight
+      .sq-highlight
+        =property.sqft
+        = precede "ft" do
+          %sup 2
+      .bed-higlight="#{property.bedrooms} bedrooms"
+      .bath-higlight="#{property.bathrooms} baths"
+    .property-highlight
+      .garage-higlight="#{property.cars} Car Garage"
+      .time-higlight="Listed #{time_ago_in_words(property.created_at)} ago"
+    .clearfix
+  / close property-information
+  .clearfix
+  .property-listing-base
+    .grid2column
+      .property-status
+        Property Status:
+        %a{href: "#"}=property.property_status.name
+    .grid2column.lastcolumn
+      %a.button.secondary-button{href: property_path(property)} View Listing
+    .clearfix
+    %hr/
+  / close .property-listing-base

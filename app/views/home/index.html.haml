@@ -1,0 +1,81 @@
+#main
+  .width-container
+    #featured-slider
+      .flexslider
+        %ul.slides
+          
+          %li
+            %a{href: "property-single.html"}
+              %img{alt: "", src: "images/demo/slide1.png"}/
+              .flex-caption
+                .featured-address-number 123 King St West.
+                .featured-address-city Toronto ON, M1M 2A1
+                .featured-price $2,896,000
+          %li
+            %a{href: "property-single.html"}
+              %img{alt: "", src: "images/demo/slide1.png"}/
+              .flex-caption
+                .featured-address-number 123 Spadina Avenue
+                .featured-address-city Toronto ON, S1A 2A5
+                .featured-price $1,896,000
+          %li
+            %a{href: "property-single.html"}
+              %img{alt: "", src: "images/demo/slide1.png"}/
+              .flex-caption
+                .featured-address-number 123 Tree Hill Rd
+                .featured-address-city Richmond Hill ON, K1B 9A3
+                .featured-price $896,000
+          %li
+            %a{href: "property-single.html"}
+              %img{alt: "", src: "images/demo/slide1.png"}/
+              .flex-caption
+                .featured-address-number 123 Lakeshore
+                .featured-address-city Toronto ON, M5B 1S2
+                .featured-price $796,000
+    .clearfix
+    :javascript
+      jQuery(document).ready(function($) {
+          $('.flexslider').flexslider({
+      		animation: "fade",              //String: Select your animation type, "fade" or "slide"
+      		slideDirection: "horizontal",   //String: Select the sliding direction, "horizontal" or "vertical"
+      		slideshow: true,                //Boolean: Animate slider automatically
+      		slideshowSpeed: 7000,           //Integer: Set the speed of the slideshow cycling, in milliseconds
+      		animationDuration: 500,         //Integer: Set the speed of animations, in milliseconds
+      		directionNav: true,             //Boolean: Create navigation for previous/next navigation? (true/false)
+      		controlNav: true,               //Boolean: Create navigation for paging control of each clide? Note: Leave true for manualControls usage
+      		keyboardNav: true,              //Boolean: Allow slider navigating via keyboard left/right keys
+      		mousewheel: false,              //Boolean: Allow slider navigating via mousewheel
+      		prevText: "Previous",           //String: Set the text for the "previous" directionNav item
+      		nextText: "Next",               //String: Set the text for the "next" directionNav item
+      		pausePlay: false,               //Boolean: Create pause/play dynamic element
+      		pauseText: 'Pause',             //String: Set the text for the "pause" pausePlay item
+      		playText: 'Play',               //String: Set the text for the "play" pausePlay item
+      		randomize: false,               //Boolean: Randomize slide order
+      		slideToStart: 0,                //Integer: The slide that the slider should start on. Array notation (0 = first slide)
+      		useCSS: true,
+      		animationLoop: true,            //Boolean: Should the animation loop? If false, directionNav will received "disable" classes at either end
+      		pauseOnAction: true,            //Boolean: Pause the slideshow when interacting with control elements, highly recommended.
+      		pauseOnHover: false            //Boolean: Pause the slideshow when hovering over slider, then resume when no longer hovering
+
+          });
+      });
+
+    .featured-listings
+      #container-sidebar
+        .content-boxed
+          %h2.title-bg Featured Listings
+          - @properties.each do |property|
+            = render partial: "properties/listing", locals: {property: property}
+
+        .clearfix
+        .page-count=page_entries_info @properties
+        .clearfix
+        = paginate @properties
+        .clearfix
+      / close #container-sidebar
+    = render "shared/sidebar"
+    :javascript
+      $(".next a").text("›")
+      $(".last a").text("»")
+      $(".prev a").text("‹")
+      $(".first a").text("«")

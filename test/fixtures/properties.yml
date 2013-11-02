@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  address: MyString
+  city: MyString
+  province: MyString
+  postal_code: MyString
+  sqft: 1
+  bedrooms: 1
+  bathrooms: 9.99
+
+two:
+  address: MyString
+  city: MyString
+  province: MyString
+  postal_code: MyString
+  sqft: 1
+  bedrooms: 1
+  bathrooms: 9.99
