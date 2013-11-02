@@ -1,0 +1,1200 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.1.7
+-- Dumped by pg_dump version 9.1.7
+-- Started on 2013-11-02 12:35:03 AMT
+
+SET statement_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- TOC entry 186 (class 3079 OID 11677)
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- TOC entry 2041 (class 0 OID 0)
+-- Dependencies: 186
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 161 (class 1259 OID 92561)
+-- Dependencies: 5
+-- Name: blog_entries; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE blog_entries (
+    id integer NOT NULL,
+    html text,
+    author_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    cover_image_file_name character varying(255),
+    cover_image_content_type character varying(255),
+    cover_image_file_size integer,
+    cover_image_updated_at timestamp without time zone,
+    published boolean,
+    title character varying(255)
+);
+
+
+ALTER TABLE public.blog_entries OWNER TO postgres;
+
+--
+-- TOC entry 162 (class 1259 OID 92567)
+-- Dependencies: 161 5
+-- Name: blog_entries_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE blog_entries_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.blog_entries_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2042 (class 0 OID 0)
+-- Dependencies: 162
+-- Name: blog_entries_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE blog_entries_id_seq OWNED BY blog_entries.id;
+
+
+--
+-- TOC entry 163 (class 1259 OID 92569)
+-- Dependencies: 5
+-- Name: ckeditor_assets; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE ckeditor_assets (
+    id integer NOT NULL,
+    data_file_name character varying(255) NOT NULL,
+    data_content_type character varying(255),
+    data_file_size integer,
+    assetable_id integer,
+    assetable_type character varying(30),
+    type character varying(30),
+    width integer,
+    height integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.ckeditor_assets OWNER TO postgres;
+
+--
+-- TOC entry 164 (class 1259 OID 92575)
+-- Dependencies: 163 5
+-- Name: ckeditor_assets_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE ckeditor_assets_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.ckeditor_assets_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2043 (class 0 OID 0)
+-- Dependencies: 164
+-- Name: ckeditor_assets_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE ckeditor_assets_id_seq OWNED BY ckeditor_assets.id;
+
+
+--
+-- TOC entry 165 (class 1259 OID 92577)
+-- Dependencies: 5
+-- Name: comments; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE comments (
+    id integer NOT NULL,
+    name character varying(255),
+    email character varying(255),
+    website character varying(255),
+    text text,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    blog_entry_id integer
+);
+
+
+ALTER TABLE public.comments OWNER TO postgres;
+
+--
+-- TOC entry 166 (class 1259 OID 92583)
+-- Dependencies: 165 5
+-- Name: comments_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE comments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.comments_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2044 (class 0 OID 0)
+-- Dependencies: 166
+-- Name: comments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE comments_id_seq OWNED BY comments.id;
+
+
+--
+-- TOC entry 167 (class 1259 OID 92585)
+-- Dependencies: 5
+-- Name: contacts; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE contacts (
+    id integer NOT NULL,
+    name character varying(255),
+    email character varying(255),
+    message text,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.contacts OWNER TO postgres;
+
+--
+-- TOC entry 168 (class 1259 OID 92591)
+-- Dependencies: 5 167
+-- Name: contacts_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE contacts_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.contacts_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2045 (class 0 OID 0)
+-- Dependencies: 168
+-- Name: contacts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE contacts_id_seq OWNED BY contacts.id;
+
+
+--
+-- TOC entry 169 (class 1259 OID 92593)
+-- Dependencies: 5
+-- Name: evaluations; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE evaluations (
+    id integer NOT NULL,
+    email character varying(255),
+    name character varying(255),
+    phone character varying(255),
+    address character varying(255),
+    city character varying(255),
+    postal_code character varying(255),
+    bedrooms numeric,
+    bathrooms numeric,
+    size integer,
+    age integer,
+    features text,
+    comments text,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    province character varying(255)
+);
+
+
+ALTER TABLE public.evaluations OWNER TO postgres;
+
+--
+-- TOC entry 170 (class 1259 OID 92599)
+-- Dependencies: 169 5
+-- Name: evaluations_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE evaluations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.evaluations_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2046 (class 0 OID 0)
+-- Dependencies: 170
+-- Name: evaluations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE evaluations_id_seq OWNED BY evaluations.id;
+
+
+--
+-- TOC entry 171 (class 1259 OID 92601)
+-- Dependencies: 5
+-- Name: hot_listings; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE hot_listings (
+    id integer NOT NULL,
+    name character varying(255),
+    email character varying(255),
+    phone character varying(255),
+    comments text,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.hot_listings OWNER TO postgres;
+
+--
+-- TOC entry 172 (class 1259 OID 92607)
+-- Dependencies: 171 5
+-- Name: hot_listings_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE hot_listings_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.hot_listings_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2047 (class 0 OID 0)
+-- Dependencies: 172
+-- Name: hot_listings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE hot_listings_id_seq OWNED BY hot_listings.id;
+
+
+--
+-- TOC entry 185 (class 1259 OID 92993)
+-- Dependencies: 5
+-- Name: pg_search_documents; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE pg_search_documents (
+    id integer NOT NULL,
+    content text,
+    searchable_id integer,
+    searchable_type character varying(255),
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.pg_search_documents OWNER TO postgres;
+
+--
+-- TOC entry 184 (class 1259 OID 92991)
+-- Dependencies: 5 185
+-- Name: pg_search_documents_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE pg_search_documents_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.pg_search_documents_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2048 (class 0 OID 0)
+-- Dependencies: 184
+-- Name: pg_search_documents_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE pg_search_documents_id_seq OWNED BY pg_search_documents.id;
+
+
+--
+-- TOC entry 173 (class 1259 OID 92609)
+-- Dependencies: 5
+-- Name: properties; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE properties (
+    id integer NOT NULL,
+    address character varying(255),
+    city character varying(255),
+    province character varying(255),
+    postal_code character varying(255),
+    sqft integer,
+    bedrooms integer,
+    bathrooms numeric,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    property_status_id integer,
+    image_file_name character varying(255),
+    image_content_type character varying(255),
+    image_file_size integer,
+    image_updated_at timestamp without time zone,
+    price numeric,
+    cars integer,
+    property_type_id integer,
+    description text
+);
+
+
+ALTER TABLE public.properties OWNER TO postgres;
+
+--
+-- TOC entry 174 (class 1259 OID 92615)
+-- Dependencies: 173 5
+-- Name: properties_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE properties_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.properties_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2049 (class 0 OID 0)
+-- Dependencies: 174
+-- Name: properties_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE properties_id_seq OWNED BY properties.id;
+
+
+--
+-- TOC entry 175 (class 1259 OID 92617)
+-- Dependencies: 5
+-- Name: property_statuses; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE property_statuses (
+    id integer NOT NULL,
+    name character varying(255),
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.property_statuses OWNER TO postgres;
+
+--
+-- TOC entry 176 (class 1259 OID 92620)
+-- Dependencies: 175 5
+-- Name: property_statuses_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE property_statuses_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.property_statuses_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2050 (class 0 OID 0)
+-- Dependencies: 176
+-- Name: property_statuses_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE property_statuses_id_seq OWNED BY property_statuses.id;
+
+
+--
+-- TOC entry 177 (class 1259 OID 92622)
+-- Dependencies: 5
+-- Name: property_types; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE property_types (
+    id integer NOT NULL,
+    name character varying(255),
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.property_types OWNER TO postgres;
+
+--
+-- TOC entry 178 (class 1259 OID 92625)
+-- Dependencies: 177 5
+-- Name: property_types_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE property_types_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.property_types_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2051 (class 0 OID 0)
+-- Dependencies: 178
+-- Name: property_types_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE property_types_id_seq OWNED BY property_types.id;
+
+
+--
+-- TOC entry 179 (class 1259 OID 92627)
+-- Dependencies: 5
+-- Name: rails_admin_histories; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE rails_admin_histories (
+    id integer NOT NULL,
+    message text,
+    username character varying(255),
+    item integer,
+    "table" character varying(255),
+    month smallint,
+    year bigint,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.rails_admin_histories OWNER TO postgres;
+
+--
+-- TOC entry 180 (class 1259 OID 92633)
+-- Dependencies: 5 179
+-- Name: rails_admin_histories_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE rails_admin_histories_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.rails_admin_histories_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2052 (class 0 OID 0)
+-- Dependencies: 180
+-- Name: rails_admin_histories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE rails_admin_histories_id_seq OWNED BY rails_admin_histories.id;
+
+
+--
+-- TOC entry 181 (class 1259 OID 92635)
+-- Dependencies: 5
+-- Name: schema_migrations; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE schema_migrations (
+    version character varying(255) NOT NULL
+);
+
+
+ALTER TABLE public.schema_migrations OWNER TO postgres;
+
+--
+-- TOC entry 182 (class 1259 OID 92638)
+-- Dependencies: 1974 1975 1976 5
+-- Name: users; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE users (
+    id integer NOT NULL,
+    email character varying(255) DEFAULT ''::character varying NOT NULL,
+    encrypted_password character varying(255) DEFAULT ''::character varying NOT NULL,
+    reset_password_token character varying(255),
+    reset_password_sent_at timestamp without time zone,
+    remember_created_at timestamp without time zone,
+    sign_in_count integer DEFAULT 0 NOT NULL,
+    current_sign_in_at timestamp without time zone,
+    last_sign_in_at timestamp without time zone,
+    current_sign_in_ip character varying(255),
+    last_sign_in_ip character varying(255),
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    first_name character varying(255),
+    last_name character varying(255)
+);
+
+
+ALTER TABLE public.users OWNER TO postgres;
+
+--
+-- TOC entry 183 (class 1259 OID 92647)
+-- Dependencies: 182 5
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.users_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2053 (class 0 OID 0)
+-- Dependencies: 183
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE users_id_seq OWNED BY users.id;
+
+
+--
+-- TOC entry 1964 (class 2604 OID 92649)
+-- Dependencies: 162 161
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY blog_entries ALTER COLUMN id SET DEFAULT nextval('blog_entries_id_seq'::regclass);
+
+
+--
+-- TOC entry 1965 (class 2604 OID 92650)
+-- Dependencies: 164 163
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY ckeditor_assets ALTER COLUMN id SET DEFAULT nextval('ckeditor_assets_id_seq'::regclass);
+
+
+--
+-- TOC entry 1966 (class 2604 OID 92651)
+-- Dependencies: 166 165
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY comments ALTER COLUMN id SET DEFAULT nextval('comments_id_seq'::regclass);
+
+
+--
+-- TOC entry 1967 (class 2604 OID 92652)
+-- Dependencies: 168 167
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY contacts ALTER COLUMN id SET DEFAULT nextval('contacts_id_seq'::regclass);
+
+
+--
+-- TOC entry 1968 (class 2604 OID 92653)
+-- Dependencies: 170 169
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY evaluations ALTER COLUMN id SET DEFAULT nextval('evaluations_id_seq'::regclass);
+
+
+--
+-- TOC entry 1969 (class 2604 OID 92654)
+-- Dependencies: 172 171
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY hot_listings ALTER COLUMN id SET DEFAULT nextval('hot_listings_id_seq'::regclass);
+
+
+--
+-- TOC entry 1978 (class 2604 OID 92996)
+-- Dependencies: 185 184 185
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY pg_search_documents ALTER COLUMN id SET DEFAULT nextval('pg_search_documents_id_seq'::regclass);
+
+
+--
+-- TOC entry 1970 (class 2604 OID 92655)
+-- Dependencies: 174 173
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY properties ALTER COLUMN id SET DEFAULT nextval('properties_id_seq'::regclass);
+
+
+--
+-- TOC entry 1971 (class 2604 OID 92656)
+-- Dependencies: 176 175
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY property_statuses ALTER COLUMN id SET DEFAULT nextval('property_statuses_id_seq'::regclass);
+
+
+--
+-- TOC entry 1972 (class 2604 OID 92657)
+-- Dependencies: 178 177
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY property_types ALTER COLUMN id SET DEFAULT nextval('property_types_id_seq'::regclass);
+
+
+--
+-- TOC entry 1973 (class 2604 OID 92658)
+-- Dependencies: 180 179
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY rails_admin_histories ALTER COLUMN id SET DEFAULT nextval('rails_admin_histories_id_seq'::regclass);
+
+
+--
+-- TOC entry 1977 (class 2604 OID 92659)
+-- Dependencies: 183 182
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
+
+
+--
+-- TOC entry 2009 (class 0 OID 92561)
+-- Dependencies: 161 2034
+-- Data for Name: blog_entries; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY blog_entries (id, html, author_id, created_at, updated_at, cover_image_file_name, cover_image_content_type, cover_image_file_size, cover_image_updated_at, published, title) FROM stdin;
+2	<p><span style="color:#008000"><span style="font-size:14px"><strong>The initial down payment required on a loan typically ranges from 5% to 25% of the sales price for the home being purchased.</strong></span></span></p>\r\n\r\n<p>You will find that most standard and conventional mortgage options require 25% or more of the sales price or appraisal worth, depending on which one is lower. Nonetheless, in the event that you are without the time to accumulate 25%, there are also what are known as &ldquo;high-ratio mortgages&rdquo; which permit down payments as low as 5%. For the safety of the mortgage provider, it is mandatory to obtain default insurance when commencing a high-ratio mortgage.</p>\r\n\r\n<p>Despite the type of mortgage that is most appropriate for your situation, conventional or high-ratio, the more sizeable your down payment, <strong><u>the less you will pay in interest overall and the lower your monthly principal and interest payments will be</u></strong>, therefore saving yourself money.</p>\r\n\r\n<p>The RSP Home Buyers&rsquo; Plan might be right for you.</p>\r\n\r\n<p>To assist you with gathering funds for your down payment, the Retirement Savings Home Buyers&rsquo; Plan (HBP) allows you to borrow up to $20,000 from your RSP. You must mandatorily repay the amount borrowed within a tenure of 15 years, and the minimum required yearly payment is 1/15 of the amount borrowed. For example, if you borrow $12,000 from your RSP, you are required to pay back at least $800 per year until repaid. Note that failure to make the minimum payment results in the difference being added your taxable income for the year.</p>\r\n\r\n<p>For a more comprehensive overview of the RSP HBP, see this link: <u>Canada Customs and Revenue Agency Publication</u></p>\r\n	1	2013-10-25 06:00:39.969226	2013-10-25 06:01:37.097937	img_255.jpg	image/jpeg	10865	2013-10-25 06:01:36.349835	t	Save more in Long-run by Increasing Initial Down payment
+3	<p>It was mentioned earlier that high-ratio mortgages allow you to acquire a mortgage to purchase a home with as little as 5% down. In order to make this possible the mortgage lender must be guaranteed some form of insurance in the event that you default on payments. This sort of insurance is referred to as CMHC or GEMICO and insures up to 95% of the purchase price of the home. There, however, are strict eligibility criteria necessary for qualifying for this insurance. Firstly, as the purchaser, you cannot use any more than 32% of your gross household income towards your mortgage payments, heating and property taxes. Secondly, you must not have more cumulative debt exceeding 40% your household income.</p>\r\n\r\n<p>The process of determining your eligibility for CMHC or GEMICO insurance will cost you between $75 and $235 in the form of an application fee. Once approved, you are also charged a premium between 1% and 3.25% on the total purchase price of the home, to be paid in lump sum upfront or to be added on to the total mortgage amount and paid overtime as a part of the monthly payments.</p>\r\n\r\n<table border="0" cellpadding="0" cellspacing="0">\r\n\t<tbody>\r\n\t\t<tr>\r\n\t\t\t<td>\r\n\t\t\t<p><strong>Maximum insurable value</strong></p>\r\n\t\t\t</td>\r\n\t\t\t<td>\r\n\t\t\t<p>The precise maximum price of the home depends on jurisdiction and locality</p>\r\n\t\t\t</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td>\r\n\t\t\t<p><strong>Insurable amount</strong></p>\r\n\t\t\t</td>\r\n\t\t\t<td>\r\n\t\t\t<p>Up to a maximum of 95% of the value of the home being purchased</p>\r\n\t\t\t</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td>\r\n\t\t\t<p><strong>Premium Fee for providing insurance</strong></p>\r\n\t\t\t</td>\r\n\t\t\t<td>\r\n\t\t\t<p>You are charged between 1% and 3.25% of the home&rsquo;s purchase price, payable in full upon approval or drawn out and incorporated within the monthly mortgage payments.</p>\r\n\t\t\t</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td style="height:2px">\r\n\t\t\t<p><strong>Tenure of mortgage</strong></p>\r\n\t\t\t</td>\r\n\t\t\t<td style="height:2px">\r\n\t\t\t<p>The exact timeline or term over which the mortgage is to repaid depends on the lender</p>\r\n\t\t\t</td>\r\n\t\t</tr>\r\n\t</tbody>\r\n</table>\r\n\r\n<p>&nbsp;</p>\r\n	1	2013-10-25 06:03:49.634964	2013-10-25 06:03:49.634964	\N	\N	\N	\N	t	How to insure your high-ratio mortgage
+4	<p>Surely in the short-run renting appears to be much cheaper than purchasing a home, however as research confirms, home owners on balance have a higher net worth than persons who rent. Intuitively, this is because the disciplined contributions to a mortgage cause home buyers to gradually add their home to the balance sheet as a sizeable asset. Contributing towards a mortgage guarantees that at the end of the day you have something you can call your own, whereas with renting, the benefits are just for the moment. To encourage homeownership the government affords tax breaks and benefits to Torontonians whom are acquiring a principal residence.</p>\r\n\r\n<p>The governmental incentives extended to Torontonians purchasing a home for the first-time make it an economical and attractive choice. For instance, <u>the federal government helps you save on closing expenses, and the provincial government helps you save on land transfer taxes</u>. Moreover, as aforementioned, you are able to borrow up to $20,000 from your RRSP via the Home Buyer&rsquo;s Plan to contribute to your mortgage down payment. See this section of the site.</p>\r\n\r\n<p>Thinking about the long-term is certainly a healthy habit. If it is your intention to live in a location longer than a few years it might make more sense to purchase a home. Would you really want to squander funds on an apartment or condo without any ownership title in the end? In the heart of Toronto, renting rates can run you easily into $18,000 (at a modest rental rate of $1,500 per month). In five years, you would have spent easily $90,000, without anything to call your own. Nonetheless, when buying a home, one must take into consideration the all the costs involved, from appraisal fees to home inspection costs, as well as the infamous Land Transfer Tax.</p>\r\n\r\n<p>Obtaining a home in Toronto can also be viewed as a sensible investment for resale in the future. Typically, the only time persons make little profit on such investments is when they try to sell the home in the near future (considered to be within three years of initial purchase), subject to the short-term ups and downs of the market. In the long-run, however, trends have shown that home prices have always increased, and so rather than &ldquo;dancing in and out of the market&rdquo; as Warren Buffet advises against (paraphrased), purchase your home and stick it out for the medium-to-long term.</p>\r\n\r\n<p>It is undeniable that real estate is one of the most secure long-term investments, hardly affected by depreciation, and known to appreciate in value. As a form of security, real estate can help you calmly settle into retirement with something of your own. Real estate may very well be one of the only vehicles that appreciate in value even when adjusting for inflation. It much better to have an appreciating asset than to have an increasing rental expense!</p>\r\n	1	2013-10-25 06:05:09.209172	2013-10-25 06:05:09.209172	\N	\N	\N	\N	t	Trying to decide if you should rent versus buy?
+5	<p>The best real estate investments tend to be those that are sold extremely reasonably within an average or underdeveloped neighborhood that later transform into popular neighborhoods because of their appearance or proximity to venues of interest and usefulness. Essentially, the now coveted posh neighborhoods of Toronto where one finds the bright lights, big buildings and diverse food options, were once underdog neighborhoods waiting to bloom. It would be lovely to own property in such neighborhoods, but often prices are too exorbitant. The initial investors in these areas won big, and you can too, by looking for the following attributes when deciding on a location for your home:</p>\r\n\r\n<p>1, Governmental and Corporate plans to invest, develop, or restore a neighborhood<br />\r\n2. Seasoned and old neighborhood whose buildings are being bought out and renovated, bring a new excitement to the area<br />\r\n3. Neighborhoods in proximity to public transit stations and near to downtown (within 30-45mins)<br />\r\n4. Quiet and safe neighborhoods known for the absence of crime (and or in proximity to a police station). See the Toronto Police website for a listing of neighborhoods and their crime ratings.</p>\r\n\r\n<p>5. The proximity of top-notch schools and hospitals. It is notable that the Fraser Institute does a review of schools on a yearly basis, and the results are available on the internet.</p>\r\n	1	2013-10-25 06:07:19.412762	2013-10-25 06:07:19.412762	gold-medallion-homes-single-family-community-daybreak-in-south-jordan-utah-picture-of-neighborhood.jpg	image/jpeg	358331	2013-10-25 06:07:18.545023	t	How to be first to identify a future leading neighborhood
+6	<p>As of October 16<sup>th</sup> 2013 (Q3 2013), it was released by the GTA REALTORS&reg; that 5,307 condominium transactions were executed via the Toronto MLS system. Given that condominium sales of Q3 2013 stood at 4,498, Q3 2013 has achieved an 18% jump compared to last year&rsquo;s results. Within the City of Toronto alone the number of condominium transactions accounted for a sheer 72% of all transactions, an increase of 19.5% above previous sales rates.</p>\r\n\r\n<p>The President of the Toronto Real Estate Board (TREB) explains these upward trends in condominium sales in the City of Toronto by noting that &ldquo;The Echo Generation wants to live close to where they work and play. It makes sense that they have turned to condominium apartments as they have moved into home ownership. Many condominium apartments in the GTA are characterized by their proximity to a diversity of employment, transportation and leisure alternatives.&rdquo;</p>\r\n\r\n<p>In response to changes in mortgage eligibility, President User continued by saying, &ldquo;A growing number of buyers have restarted their search for a condominium apartment since the summer. Despite the onset of stricter lending guidelines, buyers have found that home ownership remains affordable.&rdquo;</p>\r\n\r\n<p>Since Q3 2012 average selling prices for condos have risen by approximately 2% as of Q3 2013 &ndash; from approximately $333,846 to $340,069.</p>\r\n\r\n<p>As described by the Senior Manager of Market Analysis at TREB, Jason Mercer: &ldquo;We experienced a moderate annual rate of increase in the average condo price. However, while condo sales were up, listings were down in the third quarter. If this trend continues, it could point to increased competition between condo buyers and an uptick in the pace of price growth moving forward,&rdquo;</p>\r\n\r\n<p>&nbsp;</p>\r\n	1	2013-10-25 06:08:08.441529	2013-10-25 06:08:08.441529	\N	\N	\N	\N	t	Condominium Rates and Sales Recover in Q3 of 2013
+8	<p>It is sometime impractical to fix everything within your home altogether, however, the following five inexpensive enhancements will make a world of a difference to ambiance of your home.</p>\r\n\r\n<p><strong>1. SPRING CLEANING AND QUICK REPAIRS &ndash; </strong>As is commonly perceived by the phrase &lsquo;spring cleaning&rsquo; this involves discarding any junk or unwanted items to unclutter the home, and giving everything a thorough cleaning. This would consist of wax shining you tiles, shampooing your carpets or steam cleaning them, wiping behind and beneath furniture and appliances, polishing wood work, shining windows and removing mold from grout or grime within bathroom. Simple fixes such replacing: blown light bulbs or broken light fixtures, missing window blind shades and torn window screens, will make a tremendous difference in the value and appearance of your home.</p>\r\n\r\n<p><strong>2. THE POWER OF PAINT AND WALLPAPER &ndash; </strong>Few enhancements catapult the ambiance and value of a home as well as new paint job and or the application of wall paper. The right shades of paint will add new life and excitement to your home, so do research on the type of feel you are going for and choose the paint color that embodies that feel. Lighter colors tend to make spaces look much larger than darker shades. In the event that an area is really problematic, wall paper might be the practical solution. It looks impeccable and is easily applied, as fast in a single evening. Many home improvement shops sell affordable wall paper, especially true if the particular design your like will be discontinued or if the shop is on its last stock of it. A combination of wall paper and paint on different portions of a wall gives off a fancy and clean look as well. In addition to such a combination, it is wise to ensure that your new color scheme is coordinated with your appliances, your furniture, base boards and crown moldings. Nonetheless, fixtures and furniture can be painted as well to suit the new theme. If needed, inexpensive furniture pieces can be purchased and painted to be cohesive with the new ambiance.</p>\r\n\r\n<p><strong>3. RENEWING FIXTURES &amp; FURNITURE &ndash; </strong>Kitchen and bathroom fixtures such as faucets can be changed without much difficulty or expense. They will beautify the basin and room. For instance, you could implement Gooseneck metallic faucets, which are easier to use than older faucet styles. Furniture can also be enhanced by simply changing rusty knobs or knobs that no longer match the new color theme of a room. Knobs are also easily installed and affordable. In some cases a chair or coach may be too expensive to replace, so it might be more cost effective to invest in new upholstery to give it a &nbsp;&ldquo;like new&rdquo; look. New Ceiling fixtures such as fans and lights are also a great idea to compliment a room, and can be very affordable if you shop in the right places. Two final recommendations would be: coordinated carpets or rugs to add life to a room or even to cover a stain or scratch; and secondly, window treatments including drapes or new blinds to match the color theme.</p>\r\n\r\n<p>4. <strong>ART &amp; ACCESSORIES - Pictures</strong> express a thousand words with a single glance. They effortlessly liven their surroundings and a key component to completing a room. Scenic and artistic photos add emotion to a room and complete the feel. <strong>Mirrors </strong>also are quite useful in making a room look more spacious and more lit, and the beams reflect off the mirrors. <strong>Table Art and Figurines </strong>when placed in the right arrangements also bring life and design to an area, and can be purchased at affordable rates, <strong>Flowers </strong>also add much life, sweet scent and serenity to a room. A vase of roses or tulips can bring a sense of freshness to the environment for instance. Finally <strong>cushions </strong>have a special way of livening a room and sitting area, with its variety of shapes, textures and patterns.</p>\r\n\r\n<p><strong>5. CHANGE THE PURPOSE OF ROOM &ndash; </strong>Be open to the possibility of relabeling rooms and shifting their purposes. When doing so, it actually creates an entirely new feeling within the home. Perhaps the only fixed rooms are bathrooms and the kitchen as they have basins and bowls, but every other room in for the most part flexible. Your dining room and living room may swap locations, or your TV room and home office can also swap places. Think about the different possibilities of remodeling your home, simply by moving furniture around.</p>\r\n\r\n<p><strong>TAKE CREDIT FOR ENGANCING YOU HOME!</strong></p>\r\n\r\n<p>Enhancing your home can be effortless and affordable if you undergo the process yourself using your creativity and a few of the ideas found here. During the process you are bound to stumble upon a Eureka moment in which you see something easily implementable and value-added &ndash; trust your inner genius! It is without question that it will require some effort and elbow grease to complete the project, but the satisfaction of a revitalized and seemingly new home will be complete worth it! Best of all you will have the bragging rights that you did it all by yourself! In the event that you discover some of your own enhancement tips and tricks, feel free to share them. I would to love to hear!</p>\r\n\r\n<p>&nbsp;</p>\r\n	1	2013-10-25 06:12:48.095173	2013-10-25 06:12:48.095173	\N	\N	\N	\N	t	A FEW INEXPENSIVE ENHANCEMENTS TO YOUR HOME
+7	<p>A bathroom, while only a small part of home, if renovated actually carries major clout in terms of improving home sales prices. In fact, even very modest and inexpensive renovations to the naked eye appear to have been costly and painstaking. Follow these actions to improve your bathroom/restroom and increase the appraisal of your home:</p>\r\n\r\n<p><strong>ACTION 1 &ndash; LEAVE YOUR TUB OR SHOWER SPARKLING</strong></p>\r\n\r\n<p>As a natural course of events a shower or tub tends to gather grime, mold or mildew due to frequent usage. In order to have your tub shine again use on the shelf cleaning agents or even try the effective homemade way of using lemon juice, fresh water and of course a scrubber to restore the sparkling image you want!</p>\r\n\r\n<p><strong>ACTION 2 &ndash; THE TOILET THRONE SHOULD ALSO SHINE!</strong></p>\r\n\r\n<p>The appearance of a clean toilet is a reassuring signal to a home buyer whom would like to know that the house had been kept well. Seemingly ingrained marks and strains can be removed by the application of white vinegar. Apply the vinegar, letting it soak on the stains or discoloration which will be begin to be dissolved. Follow- up with a thorough scrub with the toilet brush and flushing. Vinegar can also be used to deodorize the toilet bowl by allowed three cups to settle within it for half an hour before flushing, and additionally, vinegar can also be used to clean the bathroom flooring.&nbsp;</p>\r\n\r\n<p><strong>ACTION 3 &ndash; CLEAN THE FACE BASIN AND COUNTER TOP</strong></p>\r\n\r\n<p>To provide a sparkling face basin and counter top, blend lime juice with baking soda creating a strong paste. Scrub the basin and counter with the paste to remove any grime or soap scum.</p>\r\n\r\n<p><strong>ACTION 4 &ndash; ENHANCEMENTS</strong></p>\r\n\r\n<p>At times, just adjusting one thing within your restroom makes all the difference. For instance, you might paint the walls a vibrant color to create a new feel, change old faucets or replace cracked and old flooring. It is not necessary to redo everything, however. Usually, focusing on the most obvious needed enhancement is most effective.</p>\r\n\r\n<p><strong>ACTION 5 &ndash; RENEW YOUR BATHROOM ACCESSORIES</strong></p>\r\n\r\n<p>It is astonishing how simply purchasing coordinated shower curtains, rugs and soap holders can enhance your bathroom value and improve buyer traction. Likewise, you may consider a scenic and serene photo to place in the bathroom.</p>\r\n\r\n<p>&nbsp;</p>\r\n	1	2013-10-25 06:10:40.460604	2013-10-25 06:12:57.903304	traditional-bathroom.jpg	image/jpeg	72004	2013-10-25 06:10:39.642853	t	HOW TO REVITALIZE YOUR RESTROOM!
+9	<p>When looking at trends it is apparent that housing sales are up 21% as of mid-October 2013 compared to their level during 2012. This represents a 13% jump over the typical average October sales in the last ten years (as noted by the TREB). Remarkable!</p>\r\n\r\n<p>&ldquo;It seems clear that we have more than recovered from the temporary dip in residential transactions that resulted from the onset of stricter mortgage lending guidelines,&rdquo; which occurred during July 2013, harkened the President of TREB, Ms. Dianne Usher.</p>\r\n\r\n<p>Moreover, as of mid-October 2013, housing prices have risen 7.3 % and are averaged at $536,301. This is speculated to be as a consequence of the strong demand for low-rise homes outpacing the supply of these types of homes, noted TREB.</p>\r\n\r\n<p>The President of TREB, Usher, pointed to the stricter lending rules implemented within the Capital (Ottawa) during July 2012 and the GTA&rsquo;s land transfer taxes as the driving impetuses behind the decline in homeowner interest in upgrading to high-rise homes, and therefore in them listing their existing homes for sale. High-rise homes have become expensive because of these real estate regulation changes. Realtors observe that rather than spending additional monies on real estate fees and increased land transfer taxes, homeowners prefer to spend that money on renovations for their existing home. Simultaneous to the decline in housing listings, the demand for Toronto City homes nearby transit channels has spiked upwards.</p>\r\n\r\n<p>According to TREB results revealed Wednesday, the attempts of Ottawa to calm the Toronto housing market is trumped by the impact of the stricter mortgage rules, and the consequential catapulting of housing prices.</p>\r\n\r\n<p>During the beginning three quarters of this year (2013), the sheer quantity of condos rented via the MLS system has increased by 25% in comparison to this identical period last year.</p>\r\n\r\n<p>Demand continues to be aggressive for condo leases even though monthly rental prices continue to increase and in the face of a 21% increase in the quantity of condos listed this year compared to this very period during 2012 (Q1 - Q3).<strong>Canada&#39;s </strong></p>\r\n\r\n<p>TREB noted that the number of single bedroom units leased via the MLS system has increased by approximately 30% as of the end of September 2013, and that monthly rental rate increased by 1.8% to approximately $1,633.</p>\r\n\r\n<p>With regards to two-bedroom units, demand had also increased by 20% as of the end of September 2013, and monthly rental rates had increased by 3.6% to approximately $2,173/month.</p>\r\n\r\n<p>Interest in three-bedroom units remain low with the number of leases increasing by just 3.6% and with monthly rental rates lower by approximately 2% and now averaging $2,610/month as of quarter three of 2013.</p>\r\n\r\n<p>Of all rentals via the MLS system in excess of 80% were within Toronto.</p>\r\n\r\n<p>&nbsp;</p>\r\n	1	2013-10-25 06:14:17.898861	2013-10-25 06:14:17.898861	\N	\N	\N	\N	t	The GTA sustains a high rate of housing sales to match the undiminishing demand for condominiums, according to the Toronto Real Estate Board’s (TREB) mid-October results.  
+10	<p>You deserve to live an area that compliments your lifestyle. Whether you are single and want to be close to the action or embedded within the joys of family life, there is a neighborhood for you. In so happens, however, that many couples prefer family oriented and safe neighborhoods which are conveniently located to everyday needed shops, institutions and travel routes. Hence, below are five family-oriented neighborhoods that might capture your attention.</p>\r\n\r\n<p>Family-oriented Communities</p>\r\n\r\n<p><strong>1. Midtown Toronto (North Toronto</strong></p>\r\n\r\n<p>Midtown Toronto, as North Toronto is affectionately known as, is fantastic for families in particular, but also for other types of home owners. There is a multitude of resources and facilities available at a convenient walking or biking distance. A community within Midtown Toronto that is representative of this truth is the Yonge and Eglinton area. This area is gradually blossoming into a GTA focal point for brand new condominiums and currently boasts of the best schools around, such as the: <u>North Toronto Collegiate Institute</u>, and&nbsp;<u>Northern Secondary School</u><u>. </u>Some of the superb amenities that it has includes the North Toronto Memorial Community Centre, Eglinton Park, Grocery stores (Metro), Electronic Retailers, ethnic restaurants, and even the renowned Silver City Theatre. Children may frequent many of the facilities while obtaining a splendid education all within a walking distance.</p>\r\n\r\n<p><strong>2.&nbsp;</strong><strong><u>Bayview Village</u></strong></p>\r\n\r\n<p>Bayview Village is a posh and classy area that is peaceful. It is conveniently located and easily reachable via two highway exits on the 401 and three subway terminals. Over the years this community has become a major residential area, having long ago caught the attention of condominium contractors, whom especially have taken root within its southern side. In the more northerly side of Bayview there are mostly town homes near to a number of fantastic schools and serene parks. Nonetheless, both North and South Bayview boast of a diversity of convenient facilities. For instance there is the Bayview Village Shopping Center which houses a variety of retailers such as Loblaws, Indigo Bookstore, and clothing apparel stores. Within Bayview Village Is also Canadian Tire for car drives, Ikea for home owners, and the North York General Hospital for a sense of security. Moreover, on the security front, there are a multitude of accessible doctors and family practitioners. To put the icing on the cake, occupants of Bayview Village are granted access to the YMCA complex, and in proximity to many gas stations and a spacious tranquil green areas.</p>\r\n\r\n<p><strong>3. High Park (</strong>Green and Serene)</p>\r\n\r\n<p>High Park is a peaceful and scenic neighborhood for families. It has gaping areas of greenery and is located within Toronto&rsquo;s West. The greener provides for a magnificent playing ground for activities with kids or even among adults. Resident of High Park have numerous activities at their disposal, including but not limited to biking, taking walks, touring the museum and visiting the local zoo. With the onset of recent condominium developments around Bloor Street West, High Park will only continue to get better, with residents having convenient access to parks, shopping centers and a host of travelling options (TTC and GO Station)</p>\r\n\r\n<p><strong>4. Rosedale</strong></p>\r\n\r\n<p>Rosedale is a highly popular family-oriented neighborhood in Toronto. Its houses tend to be lavish and grandiose within a safe and tranquil setting. Its location is appreciated by many families as it is nearby downtown Toronto (and the accompanying conveniences there) but also not far out in the north. Rosedale also has great transportation channels via the TTC and has fantastic schools.</p>\r\n\r\n<p><strong>5. Deer Park</strong></p>\r\n\r\n<p>Located to the south of Northern Toronto, Deer Park houses many small-to-medium size business enterprises providing useful services. In a short duration of time, the neighborhood has burgeoned into a fast-paced environment with things to do at any time of the day. There are excellent schools located in Deer Park and the TDSB has also permitted its residents to attend neighboring schools in the city. Deer Park is also filled with phenomenal family parks and play areas, ideal for children especially during summers. In the future, one can expect condominiums being built in Deer Park, to further enhance the community.</p>\r\n\r\n<p>&nbsp;</p>\r\n	1	2013-10-25 06:15:27.746079	2013-10-25 06:15:27.746079	\N	\N	\N	\N	t	The Best Five Family-oriented Toronto Neighborhoods
+11	<p>Toronto is famous around the world for its level of diversity and cohesion among different cultures. The Greater Toronto Area boasts more than 100 languages and dialects as a representation of this striking diversity. As one would imagine, there are multiple cultural neighborhoods throughout Toronto where one can find the most delicious ethnic dishes and cuisines, such as: Chinese, Italian, Caribbean, Ethiopian, Portuguese, Korean, South Asian, Greek, Hungarian, and the list goes on. See below of listing of just four of Toronto&rsquo;s restaurant abundant ethnic neighborhoods:</p>\r\n\r\n<p><span style="font-size:16px"><span style="color:rgb(255, 0, 0)">Chinatown</span></span></p>\r\n\r\n<p>The Chinese community it well established within Canada, with is especially established within Toronto. The extent of the culture is not restricted to any one neighborhood, but spans the full distance, with shops and ethnic restaurants for passerby.</p>\r\n\r\n<p>Nonetheless, downtown Toronto does have a main Chinatown, that is the most concentrated demonstration of Chinese culture, boasting fresh fish markets, Chinese food stores, fruit stands, countless Chinese restaurants, specialty facilities and trinket shops. It is located nearby the intersection of Dundas Street West and Spadina Avenue.<br />\r\n<br />\r\nNonetheless, in addition to the main Chinatown, the suburbs located northeasterly of Metro Toronto is recognized as the third most Chinese centered community. There are countless delicious Chinese operated restaurants, shopping outlets and grocery stores. Furthermore the biggest indoor Asian mall in North America is found in Markham &ndash; the Pacific Mall. For those looking to indulge in the culture, there is an annual two-day long Chinese Festival in Markham called &ldquo;Night It Up&rdquo; which attracts thousands of residents and visitors alike to appreciate the Chinese culture.</p>\r\n\r\n<p><span style="color:#FF0000"><span style="font-size:16px">Little India</span></span></p>\r\n\r\n<p>After the Chinese, South Asians are the second most concentrated ethnic community within Toronto. The neighborhood most known for expressing the South Asian culture is known as Little India, even though it includes peoples and facilities of Pakistani, Bangladeshi, and Sri Lankan decent as well. It is located on Eastern part of Gerrard Street East, in between Coxwell and Greenwood avenues.</p>\r\n\r\n<p>The cultural expression within Little India is potent and admirable. There you will find a multitude of delicious South Asian cuisines, goods and products. In particular, Little India is home of the biggest promoter of South Asian products in North America &ndash; the Gerrard India Bazaar.</p>\r\n\r\n<p>Be certain to be in Little India every fall to be enlightened by their colorful and joyful celebration of Diwali, which is also known as the Holi Celebration. The festival is celebrated by Hindus, Jains and Sikhs in grandiose fashion, alongside all others who are invited to join in!</p>\r\n\r\n<p><span style="color:#FF0000"><span style="font-size:16px">Greek town</span></span></p>\r\n\r\n<p>If marinated lamb, fresh tossed salad with feta cheese, roasted chicken, tzatziki sauce, and gyros catch your attention, then Greek Town may be for you! It is bustling with fantastic restaurants and is located on Danforth Avenue, in between Jones and Chester avenues.</p>\r\n\r\n<p><span style="color:#FF0000"><span style="font-size:16px">Little Italy</span></span></p>\r\n\r\n<p>The Italian stomping ground known as Little Italy is nested on College Street, in between Euclid Avenue and Shaw Street within Toronto&rsquo;s west. This area is highly trendy boasting of night clubs, sit-down coffee shops, ice-cream parlors, exquisite Italian restaurants, Butcher venues, specialty cheese shops, and authentic Italian ingredient shops.</p>\r\n\r\n<p>An interesting fact is that Little Italy over time has become progressive Portuguese over time, but nonetheless the Italian culture remains strong there.<br />\r\n&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n	1	2013-10-25 06:18:43.086629	2013-10-25 06:18:43.086629	2007_06_12TasteofDanforth.jpg	image/jpeg	89282	2013-10-25 06:18:42.090988	t	The GTA’s Cultural Neighborhoods
+\.
+
+
+--
+-- TOC entry 2054 (class 0 OID 0)
+-- Dependencies: 162
+-- Name: blog_entries_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('blog_entries_id_seq', 11, true);
+
+
+--
+-- TOC entry 2011 (class 0 OID 92569)
+-- Dependencies: 163 2034
+-- Data for Name: ckeditor_assets; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY ckeditor_assets (id, data_file_name, data_content_type, data_file_size, assetable_id, assetable_type, type, width, height, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2055 (class 0 OID 0)
+-- Dependencies: 164
+-- Name: ckeditor_assets_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('ckeditor_assets_id_seq', 1, false);
+
+
+--
+-- TOC entry 2013 (class 0 OID 92577)
+-- Dependencies: 165 2034
+-- Data for Name: comments; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY comments (id, name, email, website, text, created_at, updated_at, blog_entry_id) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2056 (class 0 OID 0)
+-- Dependencies: 166
+-- Name: comments_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('comments_id_seq', 1, false);
+
+
+--
+-- TOC entry 2015 (class 0 OID 92585)
+-- Dependencies: 167 2034
+-- Data for Name: contacts; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY contacts (id, name, email, message, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2057 (class 0 OID 0)
+-- Dependencies: 168
+-- Name: contacts_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('contacts_id_seq', 1, false);
+
+
+--
+-- TOC entry 2017 (class 0 OID 92593)
+-- Dependencies: 169 2034
+-- Data for Name: evaluations; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY evaluations (id, email, name, phone, address, city, postal_code, bedrooms, bathrooms, size, age, features, comments, created_at, updated_at, province) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2058 (class 0 OID 0)
+-- Dependencies: 170
+-- Name: evaluations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('evaluations_id_seq', 1, false);
+
+
+--
+-- TOC entry 2019 (class 0 OID 92601)
+-- Dependencies: 171 2034
+-- Data for Name: hot_listings; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY hot_listings (id, name, email, phone, comments, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2059 (class 0 OID 0)
+-- Dependencies: 172
+-- Name: hot_listings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('hot_listings_id_seq', 1, false);
+
+
+--
+-- TOC entry 2033 (class 0 OID 92993)
+-- Dependencies: 185 2034
+-- Data for Name: pg_search_documents; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY pg_search_documents (id, content, searchable_id, searchable_type, created_at, updated_at) FROM stdin;
+1	123 Toronto St. Toronto Ontario M3A 1B2 3500 3.0 2 1200000.0 1	3	Property	2013-10-26 13:47:51.138659	2013-10-26 13:47:51.138659
+2	test test test 34545 4 3.0 9 1232.0 4	4	Property	2013-10-26 13:47:51.138659	2013-10-26 13:47:51.138659
+3	ali lahore punjab 54000 256 4.0 4 13212.0 4	5	Property	2013-10-26 13:47:51.138659	2013-10-26 13:47:51.138659
+4	187 Morning Dove Drive Markham Ontario L6B 1L9 250 2.0 2 900000.0 2	6	Property	2013-10-27 07:51:07.784741	2013-10-27 07:51:07.784741
+5	ali lahore punjab 54000 250 4.0 4 13444.0 4	7	Property	2013-10-30 09:57:35.578175	2013-10-30 09:57:35.578175
+\.
+
+
+--
+-- TOC entry 2060 (class 0 OID 0)
+-- Dependencies: 184
+-- Name: pg_search_documents_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('pg_search_documents_id_seq', 5, true);
+
+
+--
+-- TOC entry 2021 (class 0 OID 92609)
+-- Dependencies: 173 2034
+-- Data for Name: properties; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY properties (id, address, city, province, postal_code, sqft, bedrooms, bathrooms, created_at, updated_at, property_status_id, image_file_name, image_content_type, image_file_size, image_updated_at, price, cars, property_type_id, description) FROM stdin;
+5	489 Bay Street, Toronto, Ontario, Canada	lahore	punjab	54000	256	4	4.0	2013-10-26 11:31:03.637275	2013-10-26 11:31:03.637275	1	\N	\N	\N	\N	13212.0	4	1	\N
+6	20 Albert Street, Toronto, Ontario, Canada	Markham	Ontario	L6B 1L9	2500	2	2.0	2013-10-27 07:51:07.597933	2013-10-27 07:51:07.597933	2	\N	\N	\N	\N	900000.0	2	4	\N
+3	505 Bay Street, Toronto, Ontario, Canada	Toronto	Ontario	M3A 1B2	3500	2	3.0	2013-10-21 07:21:04.848239	2013-10-21 07:24:42.618	2	property_new1.jpg	image/jpeg	100657	2013-10-21 07:23:03.581014	1200000.0	1	\N	\N
+4	Toronto, ON M5G 1B1, Canada	test	test	34545	4	9	3.0	2013-10-26 02:44:07.389619	2013-10-26 02:44:07.389619	2	\N	\N	\N	\N	1232.0	4	\N	\N
+7	ali	lahore	punjab	54000	250	4	4.0	2013-10-30 09:57:35.288622	2013-10-30 09:57:35.288622	1	\N	\N	\N	\N	13444.0	4	2	You'll want to add a second git remote i.e. your second application's heroku git repo url to your app to be able to push to that from a single codebase.\r\n\r\nAt the moment you probably have the default remote origin named 'heroku' which is pushing to your production application.\r\n\r\nYou'll want to add a second remote origin pointing at your new heroku app that you intend to use for staging, eg\r\n\r\ngit remote add staging <git repo url from 'my apps' page on heroku>\r\nonce you have the new git origin set up you can push to it via;\r\n\r\ngit push staging <branch to deploy>:master
+\.
+
+
+--
+-- TOC entry 2061 (class 0 OID 0)
+-- Dependencies: 174
+-- Name: properties_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('properties_id_seq', 7, true);
+
+
+--
+-- TOC entry 2023 (class 0 OID 92617)
+-- Dependencies: 175 2034
+-- Data for Name: property_statuses; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY property_statuses (id, name, created_at, updated_at) FROM stdin;
+1	For Rent	2013-10-21 06:47:31.70174	2013-10-21 06:47:31.70174
+2	For Sale	2013-10-21 06:47:31.72267	2013-10-21 06:47:31.72267
+\.
+
+
+--
+-- TOC entry 2062 (class 0 OID 0)
+-- Dependencies: 176
+-- Name: property_statuses_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('property_statuses_id_seq', 3, true);
+
+
+--
+-- TOC entry 2025 (class 0 OID 92622)
+-- Dependencies: 177 2034
+-- Data for Name: property_types; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY property_types (id, name, created_at, updated_at) FROM stdin;
+1	Condo	2013-10-26 10:05:44.198936	2013-10-26 10:05:44.198936
+2	Townhouse	2013-10-26 10:05:44.244208	2013-10-26 10:05:44.244208
+3	Semi-detached	2013-10-26 10:05:44.258289	2013-10-26 10:05:44.258289
+4	Detached	2013-10-26 10:05:44.267273	2013-10-26 10:05:44.267273
+\.
+
+
+--
+-- TOC entry 2063 (class 0 OID 0)
+-- Dependencies: 178
+-- Name: property_types_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('property_types_id_seq', 4, true);
+
+
+--
+-- TOC entry 2027 (class 0 OID 92627)
+-- Dependencies: 179 2034
+-- Data for Name: rails_admin_histories; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY rails_admin_histories (id, message, username, item, "table", month, year, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2064 (class 0 OID 0)
+-- Dependencies: 180
+-- Name: rails_admin_histories_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('rails_admin_histories_id_seq', 1, false);
+
+
+--
+-- TOC entry 2029 (class 0 OID 92635)
+-- Dependencies: 181 2034
+-- Data for Name: schema_migrations; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY schema_migrations (version) FROM stdin;
+20131021044710
+20131021044815
+20131021044939
+20131021045408
+20131021045409
+20131021054655
+20131021060605
+20131021062503
+20131022192230
+20131022204502
+20131022230012
+20131023061742
+20131023145303
+20131023201844
+20131023201937
+20131023202647
+20131023202813
+20131023203453
+20131023210731
+20131023210755
+20131024073029
+20131024073533
+20131026134412
+20131030095451
+\.
+
+
+--
+-- TOC entry 2030 (class 0 OID 92638)
+-- Dependencies: 182 2034
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY users (id, email, encrypted_password, reset_password_token, reset_password_sent_at, remember_created_at, sign_in_count, current_sign_in_at, last_sign_in_at, current_sign_in_ip, last_sign_in_ip, created_at, updated_at, first_name, last_name) FROM stdin;
+2	shpytalenko@gmail.com	$2a$10$EPGzCifjvJJMmIQPM7ukHuw8yzAgVqQzx7Ejjhzjny9sElhExJ.ia	\N	\N	\N	1	2013-10-25 21:47:53.525507	2013-10-25 21:47:53.525507	178.136.120.224	178.136.120.224	2013-10-25 21:47:53.481021	2013-10-25 21:47:53.528366	\N	\N
+1	admin@example.com	$2a$10$kpXG9MpLF0v1df12Yztaxu0tHaevdB6Uh385S6aniZmnpIMkncGoq	\N	\N	2013-10-26 02:41:37.814179	12	2013-10-30 09:56:24.660516	2013-10-26 10:04:20.233095	127.0.0.1	127.0.0.1	2013-10-21 06:47:31.658458	2013-10-30 09:56:24.663312	\N	\N
+\.
+
+
+--
+-- TOC entry 2065 (class 0 OID 0)
+-- Dependencies: 183
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('users_id_seq', 2, true);
+
+
+--
+-- TOC entry 1980 (class 2606 OID 92666)
+-- Dependencies: 161 161 2035
+-- Name: blog_entries_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY blog_entries
+    ADD CONSTRAINT blog_entries_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1982 (class 2606 OID 92668)
+-- Dependencies: 163 163 2035
+-- Name: ckeditor_assets_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY ckeditor_assets
+    ADD CONSTRAINT ckeditor_assets_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1986 (class 2606 OID 92670)
+-- Dependencies: 165 165 2035
+-- Name: comments_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY comments
+    ADD CONSTRAINT comments_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1988 (class 2606 OID 92672)
+-- Dependencies: 167 167 2035
+-- Name: contacts_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY contacts
+    ADD CONSTRAINT contacts_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1990 (class 2606 OID 92674)
+-- Dependencies: 169 169 2035
+-- Name: evaluations_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY evaluations
+    ADD CONSTRAINT evaluations_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1992 (class 2606 OID 92676)
+-- Dependencies: 171 171 2035
+-- Name: hot_listings_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY hot_listings
+    ADD CONSTRAINT hot_listings_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2008 (class 2606 OID 93001)
+-- Dependencies: 185 185 2035
+-- Name: pg_search_documents_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY pg_search_documents
+    ADD CONSTRAINT pg_search_documents_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1994 (class 2606 OID 92678)
+-- Dependencies: 173 173 2035
+-- Name: properties_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY properties
+    ADD CONSTRAINT properties_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1996 (class 2606 OID 92680)
+-- Dependencies: 175 175 2035
+-- Name: property_statuses_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY property_statuses
+    ADD CONSTRAINT property_statuses_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1998 (class 2606 OID 92682)
+-- Dependencies: 177 177 2035
+-- Name: property_types_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY property_types
+    ADD CONSTRAINT property_types_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2001 (class 2606 OID 92684)
+-- Dependencies: 179 179 2035
+-- Name: rails_admin_histories_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY rails_admin_histories
+    ADD CONSTRAINT rails_admin_histories_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2006 (class 2606 OID 92686)
+-- Dependencies: 182 182 2035
+-- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1983 (class 1259 OID 92687)
+-- Dependencies: 163 163 2035
+-- Name: idx_ckeditor_assetable; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX idx_ckeditor_assetable ON ckeditor_assets USING btree (assetable_type, assetable_id);
+
+
+--
+-- TOC entry 1984 (class 1259 OID 92688)
+-- Dependencies: 163 163 163 2035
+-- Name: idx_ckeditor_assetable_type; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX idx_ckeditor_assetable_type ON ckeditor_assets USING btree (assetable_type, type, assetable_id);
+
+
+--
+-- TOC entry 1999 (class 1259 OID 92689)
+-- Dependencies: 179 179 179 179 2035
+-- Name: index_rails_admin_histories; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX index_rails_admin_histories ON rails_admin_histories USING btree (item, "table", month, year);
+
+
+--
+-- TOC entry 2003 (class 1259 OID 92690)
+-- Dependencies: 182 2035
+-- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_users_on_email ON users USING btree (email);
+
+
+--
+-- TOC entry 2004 (class 1259 OID 92691)
+-- Dependencies: 182 2035
+-- Name: index_users_on_reset_password_token; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_users_on_reset_password_token ON users USING btree (reset_password_token);
+
+
+--
+-- TOC entry 2002 (class 1259 OID 92692)
+-- Dependencies: 181 2035
+-- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (version);
+
+
+--
+-- TOC entry 2040 (class 0 OID 0)
+-- Dependencies: 5
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+-- Completed on 2013-11-02 12:35:03 AMT
+
+--
+-- PostgreSQL database dump complete
+--
+
